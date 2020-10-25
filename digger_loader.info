@@ -1,0 +1,94 @@
+file bin/digger/loader.bin-167-16a.bin 167
+file bin/digger/loader.bin-1da-222.bin 1da
+file bin/digger/loader.bin-e00-f83.bin e00
+file bin/digger/loader.bin-2000-3071.bin 2000
+include mmio.info
+option noconv
+option noflex
+
+
+;
+; CDS DskCon routines (shared with basic memory map)
+;
+word 0F4A-0F51
+data 0F52-0F55
+data 0F69-0F6c
+
+label 00ea CDS.DCOPC
+label 00eb CDS.DCDRV
+label 00ec CDS.DCTRK
+label 00ed CDS.DCSEC
+label 00ee CDS.DCBPT
+label 00f0 CDS.DCSTA
+label 010a CDS.NMIVEC
+label 097e CDS.DR0TRK
+label 0982 CDS.NMIFLG
+label 0983 CDS.DNMIVC
+label 0985 CDS.RDYTMR
+label 0986 CDS.DRGRAM
+label 0E16 CDS.DSKCON
+label 0E6F CDS.DSKCON.Park
+label 0E87 CDS.DSKCON.Nop
+label 0EB1 CDS.DSKCON.Read
+label 0EB5 CDS.DSKCON.Write
+label 0F69 CDS.DSKCON.StepRates
+label 0F7C CDS.DSKCON.Install
+label 222E $222E
+
+
+;
+; Loader
+;
+label 01DA exec
+label 01F6 @loadloop
+label 0207 @nextblock
+label 0217 @decodeloop
+
+;
+; CDS DskCon routines (shared with basic memory map)
+;
+word 0F4A-0F51
+data 0F52-0F55
+data 0F69-0F6c
+
+label 00ea CDS.DCOPC
+label 00eb CDS.DCDRV
+label 00ec CDS.DCTRK
+label 00ed CDS.DCSEC
+label 00ee CDS.DCBPT
+label 00f0 CDS.DCSTA
+label 010a CDS.NMIVEC
+label 097e CDS.DR0TRK
+label 0982 CDS.NMIFLG
+label 0983 CDS.DNMIVC
+label 0985 CDS.RDYTMR
+label 0986 CDS.DRGRAM
+label 0E16 CDS.DSKCON
+label 0E6F CDS.DSKCON.Park
+label 0E87 CDS.DSKCON.Nop
+label 0EB1 CDS.DSKCON.Read
+label 0EB5 CDS.DSKCON.Write
+label 0F69 CDS.DSKCON.StepRates
+label 0F7C CDS.DSKCON.Install
+label 222E $222E
+
+
+
+;
+; Application
+;
+data 2035-3011
+data 2009
+
+label 1000 App.LoadAddress
+label 7d00 App.EndAddress
+label 2000 App.VSyncWait
+label 2009 App.VideoPage
+label 200A App.InitGIME
+label 2035 App.TitleImage
+label 3012 App.DisplayTitle
+label 3435 $3435
+label 3637 $3637
+label 2024 $2024
+label 8000 App.FrameBuffer
+

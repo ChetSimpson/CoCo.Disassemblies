@@ -1,7 +1,9 @@
 
 DISASM			=	f9dasm
 DISASM_OPTS		=
-INFO_FILES		=	audiospectrumanalyzer.info	\
+INFO_FILES		=	digger_loader.info			\
+					digger_game.info			\
+					audiospectrumanalyzer.info	\
 					buzzardbait_cc3p.info		\
 					colorbaseball.info
 ASM_FILES		=	$(INFO_FILES:%.info=src/%.asm)

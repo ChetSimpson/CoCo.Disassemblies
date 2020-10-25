@@ -1,6 +1,6 @@
-;
-; memory mapped IO registers
-;
+*
+* memory mapped IO registers
+*
 
 label ff00 MMIO.PIA0.A.Data
 label ff01 MMIO.PIA0.A.Control
@@ -19,9 +19,9 @@ label ff48 MMIO.FDC.Status
 label ff49 MMIO.FDC.Track
 label ff4a MMIO.FDC.Sector
 label ff4b MMIO.FDC.Data
+
 label ff90 MMIO.Init0
 label ff91 MMIO.Init1
-
 label ff98 MMIO.Video.Mode
 label ff99 MMIO.Video.Res
 label ff9a MMIO.Video.BorderColor
@@ -69,16 +69,11 @@ label FFD1 MMIO.SAM.Offset.F5.Set
 label FFD2 MMIO.SAM.Offset.F6.Clear
 label FFD3 MMIO.SAM.Offset.F6.Set
 
-
-
-
 label ffd8 MMIO.CPUClock.Slow
 label ffd9 MMIO.CPUClock.Fast
 
 label ffde MMIO.ROM.Enable
 label ffdf MMIO.ROM.Disable
-
-
 
 
 * Common labels (move somewher else)
