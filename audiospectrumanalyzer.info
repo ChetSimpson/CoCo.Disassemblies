@@ -1,0 +1,385 @@
+*******************************************************************************
+*
+*	Audio Spectrum Analyzer Disassembly Information File
+*
+*******************************************************************************
+file bin/audiospectrumanalyzer_rom.raw c000
+include mmio.info
+option noconv
+option noflex
+
+
+label 00F0 Flags.KalidescopeActive
+label 00F4 FrequencyGraphSampleRate
+label 00F5 FrequencyGraphUpdateSkip
+label 00F6 Flags.DetailMode
+label 00F9 Flags.HoldPeak
+label 00FA State.CurrentColor
+label 00FB State.ResampleCount
+label 00FD SampleBufferPtr
+
+
+comment 0200
+comment 0200 ==== Frequency Traking Data Structure
+comment 0200 ====---------------------------------
+comment 0200 ==== 0	(const) Frequency
+comment 0200 ==== 2	Screen location (current top?)
+comment 0200 ==== 4	???
+comment 0200 ==== 5	???
+comment 0200 ==== 6	Screen location (bottom or current top?)
+comment 0200 ==== 8	(const?) Bar block graphic / color
+comment 0200 ==== 9	(const?) Bar block graphic / color
+comment 0200 ==== A	(const) bottom/resting screen position of bar
+label 0200 FrequencyTrackingTableStart
+
+
+comment 0301
+comment 0301 -----------------------------------------------------
+comment 0301 - ??????
+comment 0301 -----------------------------------------------------
+label 0301 SlowGraphUpdateRate
+label 030C FastGraphUpdateRate
+label 03FF StackBottomPtr
+label 0400 ScreenStart
+label 0600 TextScreenEnd
+label 0569 FirstSeparatorPos
+label 1000 SGScreenEnd
+label 3C34 PIAInitValues
+label 0C40 FrequencyMarkerScreenPos
+label 0167 Basic.ConsoleOutVector
+label 0074 Basic.TopRam
+label A1C1 ROM.InKey
+label A30A ROM.PrintChar
+label A928 ROM.ClearTextScreen
+
+
+comment C003
+comment C003 -----------------------------------------------------
+comment C003 - ??????
+comment C003 -----------------------------------------------------
+label C003 SampleAudioFrequencies
+lcomment C007 FIXME: This should be wait value of $400 (manually switch to different label)
+
+
+comment C093
+comment C093 -----------------------------------------------------
+comment C093 - ??????
+comment C093 -----------------------------------------------------
+data C093-C0C8
+label C093 FrequencyTable
+
+
+comment C0C9
+comment C0C9 -----------------------------------------------------
+comment C0C9 - ??????
+comment C0C9 -----------------------------------------------------
+label C0C9 UpdateFrequencyGraph
+lcomment C0C9 Get the address of the frequency entry table
+lcomment C0CB Get the number of entries to process
+lcomment C0CD Save the number of entries to process
+lcomment C0CF Get ??????
+lcomment C0D1 It's zero
+lcomment C0D3 Get multiplier of 64 (2 screen rows per update?)
+* MISSING COMMENT GAP
+lcomment C0F9 Get the graphics block to use for erasing (black)
+lcomment C0FB Erase the a row of the frequency graph bar
+lcomment C0FD Go to the next screen row
+lcomment C100 Dec ??????
+lcomment C102 Decrement number of rows to process. Are we done yet?
+lcomment C103 Nope, keep erasing!
+lcomment C105 ??????
+lcomment C107 Is HOLD PEAK enabled?
+lcomment C109 Nope. SKip setting new peak
+lcomment C10B ?????? Get address of current peak?
+lcomment C10D ?????? Get block to draw with?
+lcomment C10F Set the peak marker on the screen
+lcomment C111 Go to the next frequency entry
+lcomment C113 Decrement counter of entries to process
+lcomment C115 Not done yet
+lcomment C117 -
+
+
+comment C118
+comment C118 -----------------------------------------------------
+comment C118 - Main program entry point (JUMPED TO FROM $C000)
+comment C118 -----------------------------------------------------
+label C118 Main
+lcomment C118 Set the stack
+lcomment C11C Show the marquee
+lcomment C11F Point to the start of the sample buffer
+lcomment C122 Save it!
+lcomment C124 Get the PIA init values
+lcomment C127 Init!
+lcomment C12B Init!
+lcomment C12F Init!
+lcomment C133 Get the starting update rate for the frequency graph
+lcomment C136 Save it
+lcomment C138 -
+lcomment C13A Reset the hold peak flag
+lcomment C13C Reset the detail mode flag
+lcomment C13E Restore the address of the sample buffer
+lcomment C140 Get the MSB of what BASIC thinks is the top of RAM
+lcomment C142 Is it $1000 (4k)
+lcomment C144 
+lcomment C146 Get the number of bytes to clear
+lcomment C149 Get the byte to set
+lcomment C14B Save to sample buffer
+lcomment C14D Are we done?
+lcomment C14F Nope!
+lcomment C151 ??????
+lcomment C153 Point to the start of the screen
+lcomment C156 Get the screen clear value
+lcomment C159 Save to screen
+lcomment C15B Done yet?
+lcomment C15E Nope!
+lcomment C160 -
+lcomment C163 -
+lcomment C166 -
+lcomment C169 Print the frequency markers
+lcomment C16C Get the start of the sample buffer
+lcomment C16F Save it! (WHY! it never seems to change. Maybe future?)
+lcomment C171 Point to the frequency table
+lcomment C174 Get the graphic block to use for the frequency bar
+lcomment C176 Set it
+lcomment C178 Point to the position of the first frequency bar
+lcomment C17C Get number of frequencies to add/draw
+lcomment C17E Save number of frequencies to add/draw
+lcomment C180 Get a frequency value from the table
+lcomment C182 Save the current screen location
+lcomment C184 (0) Set the entry's frequency value
+lcomment C186 (2) set the entry's ?????? screen location
+lcomment C189 (4) Set the entry's ?????? to 0
+lcomment C18B (5) Set the entry's ?????? to 0
+lcomment C18D (6) Set the entry's ?????? screen location
+lcomment C190 Get the graphic block to use for the frequency bar
+lcomment C192 Save the bar line at the current screen location
+lcomment C194 Go to the next row over on the screen
+lcomment C196 Are at the first separator?
+lcomment C19A Nope!
+lcomment C19C Skip a row for the separator
+lcomment C19E Are at the second separator?
+lcomment C1A2 Nope!
+lcomment C1A4 Skip a row for the separator
+lcomment C1A6 Get the bar line graphic
+lcomment C1A8 (8) Set the entry's ??????
+lcomment C1AA Go to the next full color block
+lcomment C1AC Ensure it's graphical
+lcomment C1AE Is this ??????
+lcomment C1B0 Yes, go to the next one! Skip because ??????
+lcomment C1B2 Is this ??????
+lcomment C1B4 Yes, go to the next one! Skip because ??????
+lcomment C1B6 Save the next bar graphic block
+lcomment C1B8 Get ??????? value
+lcomment C1BA (9) Set the entry's ??????
+lcomment C1BC Retrieve the stashed screen location
+lcomment C1BE (10) Set the entry's ??????
+lcomment C1C0 Are we done yet?
+lcomment C1C2 Nope!
+lcomment C1C4 Point to ?????? (somewhere on screen)
+lcomment C1C7 -	
+lcomment C1C9 -	
+lcomment C1CB -	
+lcomment C1CD -	
+lcomment C1CF Save to screen
+lcomment C1D1 Go to next screen line
+lcomment C1D4 Are we done yet?
+lcomment C1D5 Nope!
+lcomment C1D7 Go up 6 lines??????
+lcomment C1DB Done yet?
+lcomment C1DD Nope!
+lcomment C1DF Point to the application title
+lcomment C1E2 Point to the location on screen to put it
+lcomment C1E5 Copy the text to the SG screen
+lcomment C1E8 Point to thescreen location of the first separator
+lcomment C1EB Get the block to draw ($CA) and the draw count (7)
+lcomment C1EE FIXME: UNUSED DEAD CODE!
+lcomment C1F1 Save the block for the first separator
+lcomment C1F3 Save the block for the second separator
+lcomment C1F5 Go down 8 lines
+lcomment C1F9 Done yet?
+lcomment C1FA Nope
+lcomment C1FC Point to the location on screen to put the decible tags
+lcomment C1FF Point to the decible strings
+lcomment C202 Get number of strings to print
+lcomment C204 Save our regs
+lcomment C206 Go print the string
+lcomment C209 Restore our regs
+lcomment C20B Go down 6 blocks (1 text line, 12 pixels)
+lcomment C20F Is this the third one printed?
+lcomment C211 Nope!
+lcomment C213 Yes, go down 6 blocks (1 text line, 12 pixels)
+lcomment C217 Done yet?
+lcomment C218 Nope!
+
+
+comment C21A
+comment C21A -----------------------------------------------------
+comment C21A - ??????
+comment C21A -----------------------------------------------------
+label C21A Main.Loop
+label C232 @checkForAudioToggleKey
+label C240 @checkForPauseKey
+label C244 @waitForUnpauseKey
+label C24D @checkForHoldPeakKey
+label C26D @checkForResetPeakKey
+label C2A1 @checkForSetFastModeKey
+label C2AF @checkForSetSlowModeKey
+label C2BD @checkForKalidescopeKey
+lcomment C21A
+lcomment C21C
+lcomment C21E Sample frequencies
+lcomment C221 Update the graph bars
+lcomment C224 Grab a key from the keyboard
+lcomment C227 Is this the DETAIL TOGGLE key
+lcomment C229 Nope
+lcomment C22B Toggle DETAIL TOGGLE flag
+lcomment C22D Update the frequency markers
+lcomment C230 -
+lcomment C232 Is this the AUDIO TOGGLE key
+lcomment C234 Nope
+lcomment C236 Yes, grab the current PIA values
+lcomment C239 Toggle the audio (to TV) flag
+lcomment C23B Set it back
+lcomment C23E -
+lcomment C240 Is this the PAUSE key
+lcomment C242 Nope
+lcomment C244 Yes, go get a key from the keyboard
+lcomment C247 Mask off high bit (WHY?)
+lcomment C249 No key pressed, go check again until we get one
+lcomment C24B -
+lcomment C24D Is this the HOLD PEAK TOGGLE key
+lcomment C24F Nope
+lcomment C251 Toggle the HOLD PEAK flag
+lcomment C253 ?????? Which condition is which ??????
+lcomment C255 Get address of frequency sample entry buffers
+lcomment C257 Get the character to set to the screen (ACCA) and number of frequencies to process (ACCB)
+lcomment C25A ??????
+lcomment C25C Are we at the bottom/resting screen position for this bar?
+lcomment C25E Yes, skip erasing and go to the next entry
+lcomment C260 ??????
+lcomment C262 ??????
+lcomment C264 Erase the peak marker
+lcomment C266 Go to the next frequency info entry
+lcomment C268 Dec counter. Are we done?
+lcomment C269 Nope. Keep processing frequency entries
+lcomment C26B -
+lcomment C26D Is this the RESET PEAK key
+lcomment C26F Nope
+lcomment C271 Get pointer to frequency entries
+lcomment C273 Get the character to set to the screen (ACCA) and number of frequencies to process (ACCB)
+lcomment C276 Set the number of frequencies to process 
+lcomment C278 Get ??????
+lcomment C27A It's zero, go ??????
+lcomment C27C Get ??????
+lcomment C27E Go up a screen row
+lcomment C281 Erase the block
+lcomment C283 Dec counter. Are we done?
+lcomment C284 Nope. Keep erasing
+* MISSING COMMENT GAP
+lcomment C298 Go to the next frequency entry
+lcomment C29A Are we done processing entries?
+lcomment C29C Nope, go do more!
+lcomment C29E Start over
+lcomment C2A1 Is this the FAST UPDATE MODE select key?
+lcomment C2A3 Nope.
+lcomment C2A5 Get the fast update rate information
+lcomment C2A8 Set ??????
+lcomment C2AA Set ??????
+lcomment C2AC -
+lcomment C2AF Is this the SLOW UPDATE MODE select key?
+lcomment C2B1 Nope.
+lcomment C2B3 Get the slow update rate information
+lcomment C2B6 Set ??????
+lcomment C2B8 Set ??????
+lcomment C2BA -
+lcomment C2BD Is this the KALIDESCOPE enable key
+lcomment C2BF Nope, go back and start over
+
+
+comment C2C3
+comment C2C3 -----------------------------------------------------
+comment C2C3 - Kalidescope
+comment C2C3 -----------------------------------------------------
+
+
+comment C34C
+comment C34C -----------------------------------------------------
+comment C34C - ??????
+comment C34C -----------------------------------------------------
+
+
+comment C38A
+comment C38A -----------------------------------------------------
+comment C38A - ??????
+comment C38A -----------------------------------------------------
+data C38A-C41B
+asc C38A-C41B
+label C38A FrequencyMarker
+
+
+comment C41C
+comment C41C -----------------------------------------------------
+comment C41C - ??????
+comment C41C -----------------------------------------------------
+label C41C PrintFrequencyMarkers
+
+
+comment C49A
+comment C49A -----------------------------------------------------
+comment C49A - ??????
+comment C49A -----------------------------------------------------
+label C49A DrawSGText
+
+
+comment C4CE
+comment C4CE -----------------------------------------------------
+comment C4CE - ??????
+comment C4CE -----------------------------------------------------
+data C4CE-C501
+label C4CE AppTitleString
+label C4E6 DeciblRangeValueStrings
+
+
+comment C502
+comment C502 -----------------------------------------------------
+comment C502 - ??????
+comment C502 -----------------------------------------------------
+label C502 PrintText
+label C50B @done
+
+
+comment C515
+comment C515 -----------------------------------------------------
+comment C515 - Displays the marquee and waits for a key press
+comment C515 -----------------------------------------------------
+label C515 ShowMarquee
+lcomment C52A Set screen orange
+
+
+comment C50C
+comment C50C -----------------------------------------------------
+comment C50C - ??????
+comment C50C -----------------------------------------------------
+label C50C MargueeLightCycleValue
+comment C533 Draw the marquee lights around edges of screen
+label C539 @topLoop
+label C547 @rightLoop
+label C555 @bottomLoop
+label C565 @leftLoop
+comment C572 Wait for vsync ??????
+comment C57F Rotate the marquee lights
+
+
+comment C5A0
+comment C5A0 -----------------------------------------------------
+comment C5A0 - ??????
+comment C5A0 -----------------------------------------------------
+data C5A0-C647
+label C5A0 TitleScreenText
+
+
+comment C648
+comment C648 -----------------------------------------------------
+comment C648 - END
+comment C648 -----------------------------------------------------
+unused C648-C7FF

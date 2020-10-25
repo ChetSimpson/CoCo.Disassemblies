@@ -1,0 +1,1030 @@
+*******************************************************************************
+*
+*	Buzzard Bait (w/ CoCo 3 Patch) Disassembly Information File
+*
+*******************************************************************************
+file bin/buzzardbait_cc3p_bin.raw 1c00
+include mmio.info
+option noconv
+option noflex
+
+
+
+
+*******************************************************************************
+*
+*	Constants misidentified as addressed locations
+*	NOTE: These are outside the bounds of the game binary
+*
+*******************************************************************************
+label 0404 +$0404
+;label 1209 +$1209
+label 2000 +$2000
+label 20AA +$20AA
+label 1209 +$1209
+label 8001 $8001
+label AAAA $AAAA
+label B435 $B435
+label B43D $B43D
+label F800 $F800
+label FC00 $FC00
+label FC3F $FC3F
+label FE08 $FE08
+label FE40 $FE40
+label FF60 $FF60
+label FFFF $FFFF
+
+
+* 8 pixel wide areas
+* 4DFD	Font (8px)
+
+* 16 pixel wide areas
+* 46FA	Something round, player standing, guard standing
+
+
+comment 0000 
+comment 0000 ------------------------------------------------------------------------------
+comment 0000 Global variables, data, and buffers
+comment 0000 ------------------------------------------------------------------------------
+rmb 0000-3ff
+label 0001 CurrentWaveStageId
+
+label 0009 Platform2_Active
+label 000A Platform3_Active
+label 000B Platform4_Active
+label 000C Platform5_Active
+label 000D Platform6_Active
+label 0011 GameFlag_IsEggWave
+label 0012 GameFlag_IsTeamWave
+label 0013 GameFlag_StartWithDactyl
+label 0014 GameFlag_IsSurvivalWave
+label 003E PlayerOneNumOfLives
+;label 0046 PlayerTwoDataStart	*	Start of player two data?
+label 0066 PlayerTwoNumOfLives
+label 0089 AudioEffectSampleDelay
+label 0099 SCRATCHPAD1
+label 009A SCRATCHPAD2
+label 00C4 TextColorMask
+label 00C8 Blit_Width
+label 00C9 Blit_Height
+label 0192 CurrentWaveStateData
+label 0193 CurrentWaveStateData+1
+label 0194 CurrentWaveStateData+2
+label 0195 CurrentWaveStateData+3
+label 0400 FrameBufferBegin
+
+
+*
+* Important screen locations
+*
+label 1947 Platform1_ScreenLoc		*	Screen location
+label 13CC Platform2_ScreenLoc		*	Screen location
+label 1490 Platform2_ScreenLocEnd
+label 0F95 Platform3_ScreenLoc		*	Screen location
+label 105B Platform3_ScreenLocEnd
+label 107B Platform4_ScreenLoc		*	Screen location
+label 115E Platform4_ScreenLocEnd
+label 09EA Platform5_ScreenLoc		*	Screen location
+label 0AF0 Platform5_ScreenLocEnd
+label 087A Platform6_ScreenLoc		*	Screen location
+label 0941 Platform6_ScreenLocEnd
+
+label 614C PterodactylEscapeRegionTable
+label 12C0 PterodactylEscapeRegion1_Begin
+label 1520 PterodactylEscapeRegion1_End
+label 0E80 PterodactylEscapeRegion2_Begin
+label 10E0 PterodactylEscapeRegion2_End
+label 0F60 PterodactylEscapeRegion3_Begin
+label 11E0 PterodactylEscapeRegion3_End
+label 08E0 PterodactylEscapeRegion4_Begin
+label 0B80 PterodactylEscapeRegion4_End
+label 0760 PterodactylEscapeRegion5_Begin
+label 09E0 PterodactylEscapeRegion5_End
+
+label 0C08 MessagePos_PrepareToJoust
+label 0D03 MessagePos_UnbeatablePterodactyl
+label 0B8A MessagePos_BewareOfThe
+label 0C09 MessagePos_SurvivalWave_GladiatorWave
+label 0C0B MessagePos_TeamWave
+label 0E8C MessagePos1_Wave
+label 0E8D MessagePos2_Wave
+label 110A MessagePos_BuzzardBait
+label 110C MessagePos_EggWave
+label 1585 MessagePos_PointBountyFor
+label 1681 MessagePos_BonusForPlayerCoop
+label 1784 MessagePos_DismountingPlayer
+label 1682 MessagePos_CollectSurvivalBonus
+label 1687 MessagePos_NoBountyAwarded
+label 1680 MessagePos1_CollectBounty
+label 168D MessagePos2_CollectBounty
+label 1683 MessagePos_PlayerConflict_NoSurvivalPoints
+label 1940 BottomPlatformFloorPos
+label 1A20 EndSpriteRenderAreaPos
+label 1A27 ScoreBoxOuterFramePos
+label 1A39 ScoreBoxOuterFrameEndPos
+label 1A67 ScoreBoxMiddleFramePos
+
+
+
+
+comment 1C00 
+comment 1C00 ------------------------------------------------------------------------------
+comment 1C00 Platform graphics
+comment 1C00 ------------------------------------------------------------------------------
+data 1C00-4F6D			*	Graphics and data (mostly graphics)
+label 1C00 Gfx_ScoreboxFrame
+label 1C12 Gfx_Platform1
+label 1C90 Gfx_Platform2
+label 1CC8 Gfx_Platform3
+label 1CF9 Gfx_Platform4
+label 1D59 Gfx_Platform5
+label 1DB3 Gfx_Platform6
+label 1DF9 Gfx_Dude1_Rght_WingUp
+label 1EA9 Gfx_Dude1_Rght_WingDn
+label 1F59 Gfx_Dude1_Left_WingUp
+label 2009 Gfx_Dude1_Left_WingDn
+label 20B9 Gfx_Dude2_Rght_WingUp
+label 2169 Gfx_Dude2_Rght_WingDn
+label 2219 Gfx_Dude2_Left_WingUp
+label 22C9 Gfx_Dude2_Left_WingDn
+label 2379 Gfx_Dude3_Rght_WingUp
+label 2429 Gfx_Dude3_Rght_WingDn
+label 24D9 Gfx_Dude3_Left_WingUp
+label 2589 Gfx_Dude3_Left_WingDn
+;M20F9			*	??? 
+;M23F9			*	??? 
+;M2FF9			*	??? 
+;M32F9			*	??? 
+;M35F9			*	??? 
+;M3645			*	??? 
+label 3691 Text_SplashScreen				* Splash screen when game starts or is reset
+label 3701 Message_PlayerSelect				* 1 OR 2 PLAYERS.
+label 3711 Message_PrepareToJoust			* PREPARE TO JOUST
+label 3722 Message_BuzzardBait				* BUZZARD BAIT
+label 372F Message_SurvivalWave				* SURVIVAL  WAVE
+label 3739 Message_Wave						* WAVE
+label 373E Message_EggWave					* EGG WAVE
+label 3747 Message_GladiatorWave			* GLADIATOR WAVE
+label 3756 Message_BewareOfThe				* BEWARE OF THE
+label 3764 Message_NoSurvivalPoints			* NO SURVIVAL POINTS AWARDED
+label 377F Message_PlayerConflict			* PLAYER CONFLICT B NO BONUS
+label 379A Message_CollectSurvivalBonus		* COLLECT 1OOO SURVIVAL POINTS
+label 37B7 Message_UnbeatablePterodactyl	* -UNBEATABLE,- PTERODACTYL
+label 37D1 Message_PointBountyFor			* 1...  POINT BOUNTY FOR
+label 37E8 Message_DismountingPlayer		* DISMOUNTING FIRST PLAYER
+label 3801 Message_PlayerDead				* PLAYER    DEAD
+label 3810 Message_ThyGameIsOver			* THY GAME IS OVER
+label 3821 Message_PlayerCoopBonus			* PLAYER COBOPERATION B 1... PTS
+label 3840 Message_TeamWave					* TEAM  WAVE
+label 384B Message_BonusForPlayerCoop		* BONUS FOR  PLAYER COBOPERATION
+label 386A Message_NoBountyAwarded			* NO BOUNTY  AWARDED
+label 387D Message_CollectBounty			* COLLECT 1... BOUNTY
+label 388D Message_GARBAGE00000				* Unused garbage ??????
+;M3C31			*	??? 
+label 3FD1 PterodactylSpriteFrame1
+label 3FFE PterodactylSpriteFrame2
+label 402B PterodactylSpriteFrame3
+label 4058 PterodactylSpriteFrame4
+label 4085 PterodactylSpriteFrame5
+label 40A3 PterodactylSpriteFrame6
+label 40C1 PterodactylSpriteFrame7
+label 40DF PterodactylSpriteFrame8
+label 40FD PterodactylSpriteFrame9
+label 4125 PterodactylSpriteFrame10
+label 414D PterodactylSpriteFrame11
+label 4175 PterodactylSpriteFrame12
+label 4701 Graphics_Egg				*	4 normal, 4 cracked. 16x9 pixels (18 bytes)
+label 4791 Graphics_Dude1Standing	*	4 normal. 16x13 pixels (26 bytes)
+label 47F9 Graphics_Dude2Standing	*	4 normal. 16x13 pixels (26 bytes)
+label 4861 Graphics_Dude3Standing	*	4 normal. 16x13 pixels (26 bytes)
+label 48C9 LaveHandSpriteFrames
+label 4A79 LavaFireSpriteFrames
+label 4C1B LargeFontData
+label 4E05 FontDataAlphaNumeric
+label 4E00 FontDataAlphaNumeric-5
+label 4E91 FontDataRedNumbers
+label 4EC3 FontDataBlueNumbers
+;M4F00			*	??? 
+;M4F6E			*	??? 
+
+
+
+
+comment 4F00 
+comment 4F00 ------------------------------------------------------------------------------
+comment 4F00 Initialization data?
+comment 4F00 ------------------------------------------------------------------------------
+label 4F00 InitDataBegin
+label 4F6E InitDataEnd
+
+
+comment 4F6E 
+comment 4F6E ------------------------------------------------------------------------------
+comment 4F6E Entry point
+comment 4F6E ------------------------------------------------------------------------------
+label 4F6E EntryPoint
+
+
+comment 4FA2 
+comment 4FA2 ------------------------------------------------------------------------------
+comment 4FA2 Game init/reset 
+comment 4FA2 ------------------------------------------------------------------------------
+label 4FA2 ResetGame
+lcomment 4F88 Set RESET jump vector
+lcomment 4F8C Set RESET type to WARM
+
+
+comment 4FC9 
+comment 4FC9 ------------------------------------------------------------------------------
+comment 4FC9 Main game loop
+comment 4FC9 ------------------------------------------------------------------------------
+label 4FC9 Game_MainLoop
+label 4FCC Game_WaveLoop
+
+
+comment 501C 
+comment 501C ------------------------------------------------------------------------------
+comment 501C Start game over or intermission ????
+comment 501C ------------------------------------------------------------------------------
+
+
+comment 50B4 
+comment 50B4 ------------------------------------------------------------------------------
+comment 50B4 ??????
+comment 50B4 Polls input for pause and reset.
+comment 50B4 Shows coop bonus
+comment 50B4 Shows game over message
+comment 50B4 ------------------------------------------------------------------------------
+data 50B4-50B7
+label 50B8 PollPlayerInput
+;lcomment 50B8 Pause game (loop)
+
+
+comment 5173 
+comment 5173 ------------------------------------------------------------------------------
+comment 5173 Initialize PIA 1 Channel B (sound, CART IRQ, FIRQ, direction)
+comment 5173 ------------------------------------------------------------------------------
+label 5173 InitPIA1ChannelB
+
+
+comment 5179 
+comment 5179 ------------------------------------------------------------------------------
+comment 5179 Draw text string.
+comment 5179 - Glyphs are space, followed by alphabet, followed by numbers.
+comment 5179 - null (0) is space character. A is 1, B is 2 and so on. Numbers start at 27
+comment 5179 - $ff terminates the string
+comment 5179 ------------------------------------------------------------------------------
+label 5179 DrawTextString
+
+
+comment 51A5 
+comment 51A5 ------------------------------------------------------------------------------
+comment 51A5 ??????
+comment 51A5 ------------------------------------------------------------------------------
+label 51A5 DrawTextStringLarge
+
+
+comment 51D5 
+comment 51D5 ------------------------------------------------------------------------------
+comment 51D5 Counts down U register until it's zero
+comment 51D5 ------------------------------------------------------------------------------
+label 51D8 CountdownURegister
+
+
+comment 51E1 
+comment 51E1 ------------------------------------------------------------------------------
+comment 51E1 Reads a key from the keyboard (TODO: detail keycodes)
+comment 51E1 ------------------------------------------------------------------------------
+label 51E1 ReadKeyboard 
+
+
+comment 5216 
+comment 5216 ------------------------------------------------------------------------------
+comment 5216 ??????
+comment 5216 ------------------------------------------------------------------------------
+
+
+comment 522B 
+comment 522B ------------------------------------------------------------------------------
+comment 522B ??????
+comment 522B ------------------------------------------------------------------------------
+
+
+comment 524E 
+comment 524E ------------------------------------------------------------------------------
+comment 524E ?????? DEAD CODE ??????
+comment 524E ------------------------------------------------------------------------------
+
+
+comment 525A 
+comment 525A ------------------------------------------------------------------------------
+comment 525A Clear the screen (TODO: ?????? with SAM/VDG)
+comment 525A ------------------------------------------------------------------------------
+label 525A ClearGraphicsScreen
+label 525D ClearGraphicsScreenEx
+
+
+comment 5270 
+comment 5270 ------------------------------------------------------------------------------
+comment 5270 Show the text based splash screen (VDG)
+comment 5270 ------------------------------------------------------------------------------
+label 5270 ShowSplashScreen
+
+
+comment 529E 
+comment 529E ------------------------------------------------------------------------------
+comment 529E Displays colorburst pattern and waits for a key
+comment 529E ------------------------------------------------------------------------------
+label 529E ColorBurstScene_Run
+lcomment 52A8 FIXME: This should be a different symbolic (FrameBufferEnd??)
+
+
+comment 52B3 
+comment 52B3 ------------------------------------------------------------------------------
+comment 52B3 Draw the scene (platforms and scorebox)
+comment 52B3 ------------------------------------------------------------------------------
+label 52B3 DrawDefaultScene
+label 52B8 @DrawFloorLoop
+comment 52B8 -
+comment 52B8 Draws the floor (above lava). Starts 1 line above bottom platform
+comment 52B8 and drawing wraps around. This results in some missing pixels on
+comment 52B8 the left side of the center/bottom platform above the scorebox
+comment 52B8 possibly due to overlap with the platform texture.
+comment 52CD Draw outer frame at top and bottom
+label 52D0 @DrawBoxTopBottomLoop
+comment 52E2 Draw left/right frame and middle
+comment 52F3 Split box in center (i.e. space between score boxes)?
+
+
+comment 5303 
+comment 5303 ------------------------------------------------------------------------------
+comment 5303 Blit Repeat Copy Line (for scoreboard)
+comment 5303 ------------------------------------------------------------------------------
+label 5303 BlitRepeatLine
+label 5305 @RowLoop
+label 530B @ColumnLoop
+
+
+comment 5320 
+comment 5320 ------------------------------------------------------------------------------
+comment 5320 Blit Copy
+comment 5320 ------------------------------------------------------------------------------
+label 5320 BlitCopy
+label 5322 BlitCopy_ColumnLoop
+
+
+comment 5337 
+comment 5337 ------------------------------------------------------------------------------
+comment 5337 Initialize global variables and game/main scene state
+comment 5337 ------------------------------------------------------------------------------
+label 5337 InitGlobalState
+lcomment 5337 Point to beginning of global state to init
+lcomment 533C Done?
+lcomment 5340 Nope! Keep erasing
+lcomment 5342 Point to beginning of global state to init
+lcomment 5345 Point to default state values
+lcomment 534C Done?
+lcomment 534F Nope! Keep erasing
+lcomment 5351 Point to ??????
+lcomment 5356 Go to next ??????
+lcomment 5361 Set ??????
+lcomment 5366 Set ??????
+lcomment 5368 Set ??????
+lcomment 536A to array of dynamic text entries
+lcomment 536D Set ??????
+lcomment 536F Set text entry to inactive
+lcomment 5371 Go to next text entry
+
+
+comment 537E 
+comment 537E ------------------------------------------------------------------------------
+comment 537E Scene to select number of players
+comment 537E ------------------------------------------------------------------------------
+label 537E PlayerSelect_Run
+label 538B PlayerSelect_PollKbd
+label 53AF PlayerSelect_Check2Key
+label 53C0 PlayerSelect_Selected
+label 53C3 PlayerSelect_Erase
+lcomment 537E Point to location on screen to print the message
+lcomment 5392 Is this the 1 key?
+lcomment 53A1 Point to start of player data ??????
+lcomment 53A6 Check for end of player data ??????
+lcomment 53AF Is this the 2 key?
+lcomment 53C3 Erase the text message from the screen
+
+
+comment 53D5 
+comment 53D5 ------------------------------------------------------------------------------
+comment 53D5 Blit all (6) platforms
+comment 53D5 ------------------------------------------------------------------------------
+label 53D5 DrawAllActivePlatforms
+lcomment 53E3 Grab the address of the platform graphics
+lcomment 53E6 Grab the address on the screen to draw
+lcomment 53E8 Grab the dimensions
+lcomment 53F9 Check to see if the next platform should be drawn
+lcomment 53FD Go to next platform descriptor
+
+
+comment 5409 
+comment 5409 ------------------------------------------------------------------------------
+comment 5409 Play start sound / player selected (CONFIRMED)
+comment 5409 ------------------------------------------------------------------------------
+label 5409 PlayGameStartSound
+
+
+comment 5435 
+comment 5435 ------------------------------------------------------------------------------
+comment 5435 Draw dynamic text (seems to be fore points displayed on screen) ??????
+comment 5435 ------------------------------------------------------------------------------
+label 5435 DrawDynamicTextList
+lcomment 5435 Point to array of text entries
+lcomment 5438 Is text entry active
+lcomment 543A Yes
+lcomment 543C Go to next text entry 
+lcomment 543E Are we done?
+lcomment 5442 No
+lcomment 5444 Yes
+lcomment 5445 Get ?????? from ??????
+lcomment 5447 count it down
+lcomment 5449 Skip next because ??????
+lcomment 544B Go draw the text
+lcomment 544D Go to the next text entry 
+lcomment 544F 
+lcomment 5451 Get the screen address where to display the text
+lcomment 5453 Save U
+lcomment 5455 Get the address of the text string
+lcomment 5457 Go draw it (small)
+lcomment 545A Restore U
+lcomment 545C Go to the next text entry
+
+
+comment 545E 
+comment 545E ------------------------------------------------------------------------------
+comment 545E ??????
+comment 545E - 
+comment 545E Entry:
+comment 545E - U = address of text entry
+comment 545E - X = new screen address (takes effect next update?)
+comment 545E - D = ????
+comment 545E ------------------------------------------------------------------------------
+label 545E SetDynamicTextEntry
+lcomment 545E Grab address of the current ?????? text entry
+lcomment 5460 Active?
+lcomment 5462 No
+lcomment 5464 Save regs
+lcomment 5466 Go draw the text screen
+lcomment 5468 Restor regs
+lcomment 546A Save new screen address
+lcomment 546C 
+lcomment 546E 
+lcomment 5472 
+lcomment 5474 
+lcomment 5476 
+lcomment 5478 
+lcomment 5479 
+lcomment 547A 
+lcomment 547C 
+lcomment 547F Get ?????? update value
+lcomment 5481 Set in active/counter field
+lcomment 5483 Set ??????
+lcomment 5485 Go to the next text entry
+lcomment 5487 Done?
+lcomment 548B No
+lcomment 548D Get the address of the first text entry in the array
+lcomment 5490 Set it as the current ??????
+lcomment 5492 Done
+
+
+comment 5493 
+comment 5493 ------------------------------------------------------------------------------
+comment 5493 Draws the text entry then sets the active/counter to 0 ??????
+comment 5493 ------------------------------------------------------------------------------
+label 5493 FinalDrawTextEntry
+lcomment 5493 Get the screen address where to display the text
+lcomment 5495 Save U
+lcomment 5497 Get the address of the text string
+lcomment 5499 Go draw it (small)
+lcomment 549C Restore U
+lcomment 549E Set the active/counter to 0
+
+
+comment 54A1 
+comment 54A1 ------------------------------------------------------------------------------
+comment 54A1 ??????
+comment 54A1 ------------------------------------------------------------------------------
+
+
+comment 54E7 
+comment 54E7 ------------------------------------------------------------------------------
+comment 54E7 ??????
+comment 54E7 ------------------------------------------------------------------------------
+
+
+comment 5522 
+comment 5522 ------------------------------------------------------------------------------
+comment 5522 ??????
+comment 5522 ------------------------------------------------------------------------------
+data 5522-5537			*	??? Possible lookup table
+word 5522-5537			*	??? Possible lookup table
+
+
+comment 5538 
+comment 5538 ------------------------------------------------------------------------------
+comment 5538 ??????
+comment 5538 ------------------------------------------------------------------------------
+
+
+comment 5541 
+comment 5541 ------------------------------------------------------------------------------
+comment 5541 ??????
+comment 5541 ------------------------------------------------------------------------------
+
+
+comment 55AB 
+comment 55AB ------------------------------------------------------------------------------
+comment 55AB ??????
+comment 55AB ------------------------------------------------------------------------------
+
+
+comment 55E0 
+comment 55E0 ------------------------------------------------------------------------------
+comment 55E0 Draw the number of lives for player one in color blue
+comment 55E0 ------------------------------------------------------------------------------
+label 55E0 DrawPlayerOneNumOfLives
+
+
+comment 5610 
+comment 5610 ------------------------------------------------------------------------------
+comment 5610 Draw the number of lives for player two in color red
+comment 5610 ------------------------------------------------------------------------------
+label 5610 DrawPlayerTwoNumOfLives
+
+
+comment 5640 
+comment 5640 ------------------------------------------------------------------------------
+comment 5640 Print messages at start of wave ??????
+comment 5640 ------------------------------------------------------------------------------
+label 5640 PrintWaveStartMessages
+
+
+comment 56EB 
+comment 56EB ------------------------------------------------------------------------------
+comment 56EB Draws a message string using DrawTextStringEx or DrawTextString ??????
+comment 56EB ------------------------------------------------------------------------------
+label 56EB DrawMessageString
+
+
+comment 56F5 
+comment 56F5 ------------------------------------------------------------------------------
+comment 56F5 Initialize the game state ??????
+comment 56F5 ------------------------------------------------------------------------------
+label 56F5 InitWaveState
+lcomment 5835 ??? BEGIN: Draw platforms 1, 2, and 3 because why?
+
+
+comment 5860 
+comment 5860 ------------------------------------------------------------------------------
+comment 5860 Init egg information for eff wave state ??????
+comment 5860 ------------------------------------------------------------------------------
+
+
+comment 58E0 
+comment 58E0 ------------------------------------------------------------------------------
+comment 58E0 Initialize actors ??????
+comment 58E0 ------------------------------------------------------------------------------
+label 58E0 InitializeActors
+
+
+comment 598E 
+comment 598E ------------------------------------------------------------------------------
+comment 598E ??????
+comment 598E ------------------------------------------------------------------------------
+label 598E DrawTextStringEx
+
+
+comment 59B9 
+comment 59B9 ------------------------------------------------------------------------------
+comment 59B9 ??????
+comment 59B9 ------------------------------------------------------------------------------
+
+
+comment 5A78 
+comment 5A78 ------------------------------------------------------------------------------
+comment 5A78 ??????
+comment 5A78 ------------------------------------------------------------------------------
+label 5A78 PrintWaveCompletedMessages
+
+
+comment 5AE5 
+comment 5AE5 ------------------------------------------------------------------------------
+comment 5AE5 ??????
+comment 5AE5 ------------------------------------------------------------------------------
+
+
+comment 5B34 
+comment 5B34 ------------------------------------------------------------------------------
+comment 5B34 ??????
+comment 5B34 ------------------------------------------------------------------------------
+lcomment 5C1B FIXME: This should be a value of 1 but not this symbolic!
+lcomment 63FB FIXME: This should be a value of 1 but not this symbolic!
+lcomment 6F4D FIXME: This should be a value of 1 but not this symbolic!
+lcomment 7008 FIXME: This should be a value of 1 but not this symbolic!
+
+
+
+comment 5B7D 
+comment 5B7D ------------------------------------------------------------------------------
+comment 5B7D ??????
+comment 5B7D ------------------------------------------------------------------------------
+lcomment 5B7F Turn audio off
+lcomment 5BBA Turn audio on
+lcomment 5BBF Enable IRQ, FIRQ, etc.
+
+
+comment 5BC3 
+comment 5BC3 ------------------------------------------------------------------------------
+comment 5BC3 ??????
+comment 5BC3 ------------------------------------------------------------------------------
+
+
+comment 5BF6 
+comment 5BF6 ------------------------------------------------------------------------------
+comment 5BF6 ??????
+comment 5BF6 ------------------------------------------------------------------------------
+
+
+comment 5BCE 
+comment 5BCE ------------------------------------------------------------------------------
+comment 5BCE ??????
+comment 5BCE ------------------------------------------------------------------------------
+
+
+comment 5C19 
+comment 5C19 ------------------------------------------------------------------------------
+comment 5C19 ??????
+comment 5C19 ------------------------------------------------------------------------------
+lcomment 5EAB BEGIN: Blit the platform specified in ACCA
+
+
+comment 5F8B 
+comment 5F8B ------------------------------------------------------------------------------
+comment 5F8B Select which style and frame to use for the pterodactyl ??????
+comment 5F8B ------------------------------------------------------------------------------
+label 5F8B SelectPterodactylSpriteFrame
+
+
+comment 5FC3 
+comment 5FC3 ------------------------------------------------------------------------------
+comment 5FC3 Draw the pterodactyl sprite ??????
+comment 5FC3 ------------------------------------------------------------------------------
+label 5FC3 BlitPterodactylSprite
+
+
+comment 5FE3 
+comment 5FE3 ------------------------------------------------------------------------------
+comment 5FE3 Pterodactyl stuff ??????
+comment 5FE3 ------------------------------------------------------------------------------
+
+
+comment 6104 
+comment 6104 ------------------------------------------------------------------------------
+comment 6104 ??????
+comment 6104 ------------------------------------------------------------------------------
+
+
+comment 6114 
+comment 6114 ------------------------------------------------------------------------------
+comment 6114 ??????
+comment 6114 ------------------------------------------------------------------------------
+data 6114-6127		*	??? 3 bytes - 1 word = address?, 1 byte = ??
+
+
+comment 6128 
+comment 6128 ------------------------------------------------------------------------------
+comment 6128 Pterodactyl sprite table ??????
+comment 6128 ------------------------------------------------------------------------------
+data 6128-614B			*	??? 3 bytes - 1 word = address?, 1 byte = ??
+word 6128
+word 612B
+word 612E
+word 6131
+word 6134
+word 6137
+word 613A
+word 613D
+word 6140
+word 6143
+word 6146
+word 6149
+label 6128 PterodactylSpriteFrameTable
+
+
+comment 614C 
+comment 614C ------------------------------------------------------------------------------
+comment 614C Some kind of table of escape regions for Pterodactyl stuff ??????
+comment 614C ------------------------------------------------------------------------------
+data 614C-6164			*	??? 3 bytes - 1 word = address?, 1 byte = ??
+word 614C-615F			*	??? 3 bytes - 1 word = address?, 1 byte = ??
+
+
+comment 6165 
+comment 6165 ------------------------------------------------------------------------------
+comment 6165 Pterodactyl Moving Left Collision Detection
+comment 6165 ------------------------------------------------------------------------------
+label 6165 Pterodactyl_CheckCollideTopLeft
+
+
+comment 617E 
+comment 617E ------------------------------------------------------------------------------
+comment 617E Pterodactyl Moving Right Collision Detection
+comment 617E ------------------------------------------------------------------------------
+label 617E Pterodactyl_CheckCollideTopRight
+
+
+comment 6195 
+comment 6195 ------------------------------------------------------------------------------
+comment 6195 Pterodactyl Collision Detection
+comment 6195 ------------------------------------------------------------------------------
+label 6195 Pterodactyl_CheckCollide
+label 61DB @ChkPlatform5
+label 621B @ChkPlatform3
+label 625B @ChkPlatform4
+label 6292 @ChkPlatform2
+label 62F1 @CancelCheck
+label 62F3 @Return
+lcomment 62F1 Removes the immediate return address from stack to cancel check
+
+
+comment 62F4 
+comment 62F4 ------------------------------------------------------------------------------
+comment 62F4 Process playing sound effects (CONFIRMED)
+comment 62F4 ------------------------------------------------------------------------------
+label 62F4 UpdateSoundPlayer
+data 63A1-63B0
+
+
+comment 6465 
+comment 6465 ------------------------------------------------------------------------------
+comment 6465 ??????
+comment 6465 ------------------------------------------------------------------------------
+
+
+comment 646C 
+comment 646C ------------------------------------------------------------------------------
+comment 646C Possibly drawing actors (egg, birds, dudes) ??????
+comment 646C ------------------------------------------------------------------------------
+lcomment 6530 Blit a specific platform specified in ACCA
+
+
+comment 664A 
+comment 664A ------------------------------------------------------------------------------
+comment 664A Blit a sprite (unknown effect)
+comment 664A ------------------------------------------------------------------------------
+label 664A BlitSpriteUnknownEffect
+
+
+comment 6663 
+comment 6663 ------------------------------------------------------------------------------
+comment 6663 Egg Moving Right Collision Detection
+comment 6663 ------------------------------------------------------------------------------
+label 6663 Egg_CheckCollideTopRight
+
+
+comment 667A 
+comment 667A ------------------------------------------------------------------------------
+comment 667A Egg Moving Left Collision Detection
+comment 667A ------------------------------------------------------------------------------
+label 667A Egg_CheckCollideTopLeft
+
+
+comment 6699 
+comment 6699 ------------------------------------------------------------------------------
+comment 6699 Blit function ??????
+comment 6699 ------------------------------------------------------------------------------
+
+
+comment 66BC 
+comment 66BC ------------------------------------------------------------------------------
+comment 66BC ?????? Blit a sprite with masking?
+comment 66BC ------------------------------------------------------------------------------
+label 66BC BlitMaskingSprite
+
+
+comment 66D3 
+comment 66D3 ------------------------------------------------------------------------------
+comment 66D3 Egg Collision Detection
+comment 66D3 ------------------------------------------------------------------------------
+label 66D3 Egg_CheckCollide
+label 6733 @ChkPlatform5
+label 6782 @ChkPlatform3
+label 67DE @ChkPlatform4
+label 6836 @ChkPlatform2
+label 68E8 @CancelCheck
+label 68EA @Return
+
+
+comment 68EB
+comment 68EB ------------------------------------------------------------------------------
+comment 68EB Table of addresses of something (screen locations?) ??????
+comment 68EB ------------------------------------------------------------------------------
+data 68EB-6902			*	???
+word 68EB-6902			*	???
+
+
+comment 6903 
+comment 6903 ------------------------------------------------------------------------------
+comment 6903 ??????
+comment 6903 ------------------------------------------------------------------------------
+
+
+comment 6A37 
+comment 6A37 ------------------------------------------------------------------------------
+comment 6A37 ??????
+comment 6A37 ------------------------------------------------------------------------------
+
+
+comment 6B75 
+comment 6B75 ------------------------------------------------------------------------------
+comment 6B75 ?????? BIG LONG ASS FUNCTION OF SHIT!
+comment 6B75 ------------------------------------------------------------------------------
+lcomment 6FBB BEGIN: Blit a specific platform specified in ACCA
+
+
+comment 729B 
+comment 729B ------------------------------------------------------------------------------
+comment 729B Blit function ??????
+comment 729B ------------------------------------------------------------------------------
+
+
+comment 72AF 
+comment 72AF ------------------------------------------------------------------------------
+comment 72AF Bird Collision Detection
+comment 72AF ------------------------------------------------------------------------------
+label 72AF Bird_CheckCollideTopLeft
+
+
+comment 72C9
+comment 72C9 ------------------------------------------------------------------------------
+comment 72C9 Bird Collision Detection
+comment 72C9 ------------------------------------------------------------------------------
+label 72C9 Bird_CheckCollideTopRight
+
+
+comment 72E0 
+comment 72E0 ------------------------------------------------------------------------------
+comment 72E0 Blit function ??????
+comment 72E0 ------------------------------------------------------------------------------
+
+
+comment 72F3 
+comment 72F3 ------------------------------------------------------------------------------
+comment 72F3 Bird Collision Detection
+comment 72F3 ------------------------------------------------------------------------------
+label 72F3 Bird_CheckCollide
+label 733A @ChkPlatform5
+label 7371 @ChkPlatform3
+label 73A2 @ChkPlatform4
+label 73EE @ChkPlatform2
+label 780C @CancelCheck
+label 780E @Return
+
+
+comment 780F 
+comment 780F ------------------------------------------------------------------------------
+comment 780F ??????
+comment 780F ------------------------------------------------------------------------------
+
+
+comment 787C 
+comment 787C ------------------------------------------------------------------------------
+comment 787C ??????
+comment 787C ------------------------------------------------------------------------------
+
+
+comment 7943 
+comment 7943 ------------------------------------------------------------------------------
+comment 7943 Draw number of lives for player because ??????
+comment 7943 ------------------------------------------------------------------------------
+
+
+comment 7961 
+comment 7961 ------------------------------------------------------------------------------
+comment 7961 ??????
+comment 7961 ------------------------------------------------------------------------------
+
+
+comment 79AC 
+comment 79AC ------------------------------------------------------------------------------
+comment 79AC Blit function ??????
+comment 79AC ------------------------------------------------------------------------------
+
+
+comment 79CE 
+comment 79CE ------------------------------------------------------------------------------
+comment 79CE Blit function ??????	
+comment 79CE ------------------------------------------------------------------------------
+
+
+comment 79E7 
+comment 79E7 ------------------------------------------------------------------------------
+comment 79E7 Some kind of ??special?? blit routine (mix with background)
+comment 79E7 ------------------------------------------------------------------------------
+label 79E7 SpecialBlitSpriteHelper
+
+
+comment 7A3A 
+comment 7A3A ------------------------------------------------------------------------------
+comment 7A3A Blit function ??????
+comment 7A3A ------------------------------------------------------------------------------
+label 7A3A SpecialBlitSpriteRowLoop
+label 7A3C SpecialBlitSpriteColumnLoop
+
+
+comment 7A52 
+comment 7A52 ------------------------------------------------------------------------------
+comment 7A52 Blit Copy
+comment 7A52 List of (3 words) blocks to draw. blockgfx, screenpos, dimensions
+comment 7A52 ------------------------------------------------------------------------------
+data 7A52-7A88
+*
+label 7A52 LevelData_Platform1			*	Bottom center
+word 7A52-7A55
+*
+label 7A58 LevelData_Platform2			*	Middle center ()
+word 7A58-7A5B
+*
+label 7A5E LevelData_Platform3			*	Middle right upper
+word 7A5E-7A61
+*
+label 7A64 LevelData_Platform4			*	Middle right lower and middle left (wraps around to other side)
+word 7A64-7A67
+*
+label 7A6A LevelData_Platform5			*	Top center
+word 7A6A-7A6D
+*
+label 7A70 LevelData_Platform6			*	Top right and left (wraps around)
+label 7A75 LevelData_Platform6+4
+word 7A70-7A73
+*
+label 7A76 LevelData_EndPlatforms
+
+
+comment 7A89 
+comment 7A89 ------------------------------------------------------------------------------
+comment 7A89 Some kind of table (4 byte per entry) ??????
+comment 7A89 ------------------------------------------------------------------------------
+data 7A89-7B54
+label 7A89 WaveStageInfoTable
+label 7A8C WaveStageInfoTable+3
+
+
+comment 7B55 
+comment 7B55 ------------------------------------------------------------------------------
+comment 7B55 Update lavel fire and hand ??????
+comment 7B55 ------------------------------------------------------------------------------
+label 7B55 UpdateLavaHandActors
+
+
+comment 7C2E 
+comment 7C2E ------------------------------------------------------------------------------
+comment 7C2E ??????
+comment 7C2E ------------------------------------------------------------------------------
+label 7C2E UpdateLavaFireActors
+
+
+comment 7D2B 
+comment 7D2B ------------------------------------------------------------------------------
+comment 7D2B Blit Function ??????
+comment 7D2B ------------------------------------------------------------------------------
+
+
+comment 7D48 
+comment 7D48 ------------------------------------------------------------------------------
+comment 7D48 Blit Function ??????
+comment 7D48 ------------------------------------------------------------------------------
+
+
+comment 7D64 
+comment 7D64 ------------------------------------------------------------------------------
+comment 7D64 CoCo 3 Patch Entry Point
+comment 7D64 ------------------------------------------------------------------------------
+data 7D64
+code 7D65
+label 7D65 CC3EntryPoint
+rmb 7e2c-7FFf			*	??? Something here is being accessed
+
+
+comment 7FE4 
+comment 7FE4 ------------------------------------------------------------------------------
+comment 7FE4 List of text lines to display
+comment 7FE4 - Each entry consists of 6 bytes
+comment 7FE4 -	offset	size	desc
+comment 7FE4 -	0		 1		Active flag/counter (0 = inactive)
+comment 7FE4 -	1		 2		Address on screen
+comment 7FE4 -	3		 2		Address of text string
+comment 7FE4 -	5		 1		?????
+comment 7FE4 -
+comment 7FE4 ------------------------------------------------------------------------------
+label 7FDE DynamicTextEntries-6		* FIXME: Needs size of text entry
+label 7FE4 DynamicTextEntries
+label 7FFC DynamicTextEntriesEnd

@@ -1,0 +1,94 @@
+;
+; memory mapped IO registers
+;
+
+label ff00 MMIO.PIA0.A.Data
+label ff01 MMIO.PIA0.A.Control
+label ff02 MMIO.PIA0.B.Data
+label ff03 MMIO.PIA0.B.Control
+
+label FF1F MMIO.PIA0.B.Control.Mirror3
+
+label ff20 MMIO.PIA1.A.Data
+label ff21 MMIO.PIA1.A.Control
+label ff22 MMIO.PIA1.B.Data
+label ff23 MMIO.PIA1.B.Control
+
+label ff40 MMIO.FDC.Control
+label ff48 MMIO.FDC.Status
+label ff49 MMIO.FDC.Track
+label ff4a MMIO.FDC.Sector
+label ff4b MMIO.FDC.Data
+label ff90 MMIO.Init0
+label ff91 MMIO.Init1
+
+label ff98 MMIO.Video.Mode
+label ff99 MMIO.Video.Res
+label ff9a MMIO.Video.BorderColor
+label ff9b MMIO.Video.Reserved
+label ff9d MMIO.Video.VertOffset
+
+label ffa0 MMIO.MMU.Task0.Bank0
+label ffa1 MMIO.MMU.Task0.Bank1
+label ffa2 MMIO.MMU.Task0.Bank2
+label ffa3 MMIO.MMU.Task0.Bank3
+label ffa4 MMIO.MMU.Task0.Bank4
+label ffa5 MMIO.MMU.Task0.Bank5
+label ffa6 MMIO.MMU.Task0.Bank6
+label ffa7 MMIO.MMU.Task0.Bank7
+label ffa8 MMIO.MMU.Task1.Bank0
+label ffa9 MMIO.MMU.Task1.Bank1
+label ffaa MMIO.MMU.Task1.Bank2
+label ffab MMIO.MMU.Task1.Bank3
+label ffac MMIO.MMU.Task1.Bank4
+label ffad MMIO.MMU.Task1.Bank5
+label ffae MMIO.MMU.Task1.Bank6
+label ffaf MMIO.MMU.Task1.Bank7
+
+label ffb0 MMIO.Palette
+label ffb1 MMIO.Palette.Slot1
+
+label FFC0 MMIO.SAM.Mode.V0.Clear
+label FFC1 MMIO.SAM.Mode.V0.Set
+label FFC2 MMIO.SAM.Mode.V1.Clear
+label FFC3 MMIO.SAM.Mode.V1.Set
+label FFC4 MMIO.SAM.Mode.V2.Clear
+label FFC5 MMIO.SAM.Mode.V2.Set
+label FFC6 MMIO.SAM.Offset.F0.Clear
+label FFC7 MMIO.SAM.Offset.F0.Set
+label FFC8 MMIO.SAM.Offset.F1.Clear
+label FFC9 MMIO.SAM.Offset.F1.Set
+label FFCA MMIO.SAM.Offset.F2.Clear
+label FFCB MMIO.SAM.Offset.F2.Set
+label FFCC MMIO.SAM.Offset.F3.Clear
+label FFCD MMIO.SAM.Offset.F3.Set
+label FFCE MMIO.SAM.Offset.F4.Clear
+label FFCF MMIO.SAM.Offset.F4.Set
+label FFD0 MMIO.SAM.Offset.F5.Clear
+label FFD1 MMIO.SAM.Offset.F5.Set
+label FFD2 MMIO.SAM.Offset.F6.Clear
+label FFD3 MMIO.SAM.Offset.F6.Set
+
+
+
+
+label ffd8 MMIO.CPUClock.Slow
+label ffd9 MMIO.CPUClock.Fast
+
+label ffde MMIO.ROM.Enable
+label ffdf MMIO.ROM.Disable
+
+
+
+
+* Common labels (move somewher else)
+label 0072 Basic.ResetVector
+label 0074 Basic.TopRam
+label 0167 Basic.ConsoleOutVector
+label A000 Basic.Polcat
+label A00A Basic.JoyIn
+label A974 Basic.DisableMux
+label A976 Basic.EnableMux
+label A1C1 Basic.InKey
+label A30A Basic.PrintChar
+label A928 Basic.ClearTextScreen

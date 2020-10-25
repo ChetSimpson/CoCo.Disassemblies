@@ -1,0 +1,1226 @@
+*******************************************************************************
+*
+*	Color Baseball Disassembly Information File
+*
+*******************************************************************************
+file bin/colorbaseball_rom.raw c000
+include mmio.info
+option noconv
+option noflex
+
+
+
+
+*******************************************************************************
+*
+* Pixel COlor Information
+*
+*	00	green
+*	55	yellow
+*	aa	blue
+*	ff	red
+*
+*******************************************************************************
+
+
+*******************************************************************************
+*
+* TODO: General Memory Map
+*
+*	0000-01FF
+*	0200-02FF	Gfx translation buffer?
+*
+*******************************************************************************
+rmb 0000-03ff
+
+
+*******************************************************************************
+*
+*
+*
+*******************************************************************************
+label 0000 $0000+0		*	No label needed!
+label 0001 $0001+0		*	MAYBE No label needed
+label 0003 $0003+0
+label 0017 $0017+0
+label 01AC $01AC+0
+label 0258 $0258+0
+label 03FF $03FF+0
+label 0423 $0423+0
+label 0435 $0435+0
+label 043D $043D+0
+label 0445 $0445+0
+label 04BB $04BB+0
+label 059E $059E+0
+label 05A3 $05A3+0
+label 05AD $05AD+0
+label 103D $103D+0
+label 136F $136F+0
+label 180C $180C+0
+label 18F4 $18F4+0
+label 2100 $2100+0
+label 2B61 $2B61+0
+label 389F $389F+0
+label 3AAC $3AAC+0
+label 3D10 $3D10+0
+label 3D59 $3D59+0
+label 3D6A $3D6A+0
+label 3D6D $3D6D+0
+label 3D9D $3D9D+0
+label 409F $409F+0
+label 46AC $46AC+0
+label 47A2 $47A2+0
+label 6A3D $6A3D+0
+label 6A6F $6A6F+0
+label 6C00 $6C00+0
+label E806 $E806+0
+label E8FA $E8FA+0
+
+
+*******************************************************************************
+*
+* Game state and global variables
+*
+*******************************************************************************
+label 0087 GameState_WalkedApplauseVolume
+label 0089 GameState_BalkApplauseVolume
+label 00B2 GameState_Visitors_Score
+label 00B3 GameState_Home_Score
+label 0086 GameState_IsFoulBall
+label 00AB GameState_Outs
+label 00AC GameState_Balls
+label 00AD GameState_Strikes
+label 00BF ApplauseBuffer1Ptr
+label 00C0 ApplauseBuffer1Ptr+1
+label 00C1 ApplauseBuffer2Ptr
+label 00C2 ApplauseBuffer2Ptr+1
+label 00C4 ApplauseVolumeMultiplier
+label 00C5 AudioSampleNoteCounter
+label 00C6 AudioChannel1_Pos
+label 00C8 AudioChannel2_Pos
+label 00CA AudioChannel3_Pos
+label 00CC AudioChannel4_Pos
+label 00CE AudioChannel1_Freq
+label 00D0 AudioChannel2_Freq
+label 00D2 AudioChannel3_Freq
+label 00D4 AudioChannel4_Freq
+label 00D6 DrawHomeRunBannerFlag
+label 00D7 DrawHomeRunBanner_Unknown1
+label 00D8 DrawHomeRunBanner_Unknown2
+label 00D9 HomeRunBannerInputPos
+label 00DB HomeRunBannerDrawPos
+label 00DC HomeRunBannerDrawPos+1
+label 0280 SpritePixelColorTable
+lcomment 0280 Middle point of ?????? buffer staring at $0200
+
+
+*******************************************************************************
+*
+*	Screen and related buffer addresses
+*
+*******************************************************************************
+label 0400 FIXME_TeamRoster_OR_ConstValue
+label 0600 GfxScreen1TopAddr
+label 1E00 GfxBackBufferTopAddr
+label 3600 GfxBackBufferBottomAddr_AND_unknown
+label 3F78 TopOfStackPtr
+
+
+
+
+*******************************************************************************
+*
+*	Main Game Program
+*
+*******************************************************************************
+
+
+comment C000
+comment C000 ------------------------------------------------------------------------------
+comment C000 Entry point!
+comment C000 ------------------------------------------------------------------------------
+label C000 EntryPoint
+label C009 WarmResetEntryPoint
+label C013 TitleScene_Run
+
+
+comment C0A8
+comment C0A8 ------------------------------------------------------------------------------
+comment C0A8 ??????
+comment C0A8 ------------------------------------------------------------------------------
+
+
+comment C0CD
+comment C0CD ------------------------------------------------------------------------------
+comment C0CD Play inning / demo game ??????
+comment C0CD ------------------------------------------------------------------------------
+lcomment C15A Scan keyboard for input
+lcomment C15E Is this an asterisk?
+lcomment C160 Yes, go play with both players as computer 
+lcomment C162 Was ENTER pressed?
+lcomment C164 Nope, go ??????
+lcomment C166 -
+lcomment C168 Done here
+
+
+comment C1DE
+comment C1DE ------------------------------------------------------------------------------
+comment C1DE ??????
+comment C1DE ------------------------------------------------------------------------------
+
+
+comment C330
+comment C330 ------------------------------------------------------------------------------
+comment C330 Jump table of offsets based from $C330. Each entry = 2 bytes
+comment C330 ------------------------------------------------------------------------------
+data C330-C379
+
+
+comment C37A
+comment C37A ------------------------------------------------------------------------------
+comment C37A Jump entry 1 ??????
+comment C37A ------------------------------------------------------------------------------
+
+
+comment C37B
+comment C37B ------------------------------------------------------------------------------
+comment C37B Jump entry 2 ??????
+comment C37B ------------------------------------------------------------------------------
+
+
+comment C39C
+comment C39C ------------------------------------------------------------------------------
+comment C39C Jump entry 3 ??????
+comment C39C ------------------------------------------------------------------------------
+
+
+comment C3AD
+comment C3AD ------------------------------------------------------------------------------
+comment C3AD Jump entry 4 ??????
+comment C3AD ------------------------------------------------------------------------------
+
+
+comment C3C3
+comment C3C3 ------------------------------------------------------------------------------
+comment C3C3 Jump entry 5 ??????
+comment C3C3 ------------------------------------------------------------------------------
+
+
+comment C46D
+comment C46D ------------------------------------------------------------------------------
+comment C46D Jump entry 6 ??????
+comment C46D ------------------------------------------------------------------------------
+
+
+comment C4C8
+comment C4C8 ------------------------------------------------------------------------------
+comment C4C8 Jump entry 7 ??????
+comment C4C8 ------------------------------------------------------------------------------
+
+
+comment C4ED
+comment C4ED ------------------------------------------------------------------------------
+comment C4ED Jump entry 8 ??????
+comment C4ED ------------------------------------------------------------------------------
+
+
+comment C52D
+comment C52D ------------------------------------------------------------------------------
+comment C52D Jump entry 9 ??????
+comment C52D ------------------------------------------------------------------------------
+
+
+comment C541
+comment C541 ------------------------------------------------------------------------------
+comment C541 Jump entry 10 ??????
+comment C541 ------------------------------------------------------------------------------
+
+
+comment C582
+comment C582 ------------------------------------------------------------------------------
+comment C582 Jump entry 11 ??????
+comment C582 ------------------------------------------------------------------------------
+
+
+comment C588
+comment C588 ------------------------------------------------------------------------------
+comment C588 Jump entry 12 ??????
+comment C588 ------------------------------------------------------------------------------
+
+
+comment C5BE
+comment C5BE ------------------------------------------------------------------------------
+comment C5BE Jump entry 13 ??????
+comment C5BE ------------------------------------------------------------------------------
+
+
+comment C606
+comment C606 ------------------------------------------------------------------------------
+comment C606 Jump entry 14 ??????
+comment C606 ------------------------------------------------------------------------------
+
+
+comment C619
+comment C619 ------------------------------------------------------------------------------
+comment C619 Jump entry 15 ??????
+comment C619 ------------------------------------------------------------------------------
+
+
+comment C636
+comment C636 ------------------------------------------------------------------------------
+comment C636 Jump entry 16 ??????
+comment C636 ------------------------------------------------------------------------------
+
+
+comment C64D
+comment C64D ------------------------------------------------------------------------------
+comment C64D Jump entry 17 ??????
+comment C64D ------------------------------------------------------------------------------
+
+
+comment C660
+comment C660 ------------------------------------------------------------------------------
+comment C660 Jump entry 18 ??????
+comment C660 ------------------------------------------------------------------------------
+
+
+comment C673
+comment C673 ------------------------------------------------------------------------------
+comment C673 Jump entry 19 ??????
+comment C673 ------------------------------------------------------------------------------
+
+
+comment C705
+comment C705 ------------------------------------------------------------------------------
+comment C705 Jump entry 20 : Next batter ??????
+comment C705 ------------------------------------------------------------------------------
+lcomment C72B Get address of team roster
+lcomment C72E Get current player
+lcomment C730 Mask off
+lcomment C732 ??????
+lcomment C734 Get number of bytes per member entry
+lcomment C736 multiply like rabbits
+lcomment C737 Offset from start of team roster
+lcomment C739 Get first character of avrg
+lcomment C73C Is this a space (left empty)
+lcomment C73E Yes, skip ??????
+lcomment C740 ??????
+lcomment C742 ??????
+lcomment C744 ??????
+lcomment C745 ??????
+lcomment C747 ??????
+lcomment C74A ??????
+lcomment C74C ??????
+lcomment C74E ??????
+lcomment C750 Get the column (byte) and row to print
+lcomment C753 Stash X
+lcomment C755 Go print the text line
+lcomment C758 Restore X
+lcomment C75A Go to next batter?
+lcomment C75C Get current batter?
+lcomment C75E Too many?
+lcomment C760 Nope, keep going
+lcomment C762 Yes, rotate 
+lcomment C764 DONE!
+
+
+comment C765
+comment C765 ------------------------------------------------------------------------------
+comment C765 Jump entry 21 ??????
+comment C765 ------------------------------------------------------------------------------
+
+
+comment C77C
+comment C77C ------------------------------------------------------------------------------
+comment C77C Jump entry 22 ??????
+comment C77C ------------------------------------------------------------------------------
+
+
+comment C7D1
+comment C7D1 ------------------------------------------------------------------------------
+comment C7D1 Jump entry 23 ??????
+comment C7D1 ------------------------------------------------------------------------------
+
+
+comment C7D4
+comment C7D4 ------------------------------------------------------------------------------
+comment C7D4 Jump entry 24 ??????
+comment C7D4 ------------------------------------------------------------------------------
+
+
+comment C7EA
+comment C7EA ------------------------------------------------------------------------------
+comment C7EA Jump entry 25 ??????
+comment C7EA ------------------------------------------------------------------------------
+
+
+comment C801
+comment C801 ------------------------------------------------------------------------------
+comment C801 Jump entry 26 ??????
+comment C801 ------------------------------------------------------------------------------
+
+
+comment C834
+comment C834 ------------------------------------------------------------------------------
+comment C834 Jump entry 27 ??????
+comment C834 ------------------------------------------------------------------------------
+
+
+comment C84C
+comment C84C ------------------------------------------------------------------------------
+comment C84C Jump entry 28 ??????
+comment C84C ------------------------------------------------------------------------------
+
+
+comment C85A
+comment C85A ------------------------------------------------------------------------------
+comment C85A Jump entry 29 ??????
+comment C85A ------------------------------------------------------------------------------
+
+
+comment C868
+comment C868 ------------------------------------------------------------------------------
+comment C868 Jump entry 30 ??????
+comment C868 ------------------------------------------------------------------------------
+
+
+comment C875
+comment C875 ------------------------------------------------------------------------------
+comment C875 Jump entry 31 ??????
+comment C875 ------------------------------------------------------------------------------
+
+
+comment C882
+comment C882 ------------------------------------------------------------------------------
+comment C882 Jump entry 32 ??????
+comment C882 ------------------------------------------------------------------------------
+
+
+comment C890
+comment C890 ------------------------------------------------------------------------------
+comment C890 Jump entry 33 ??????
+comment C890 ------------------------------------------------------------------------------
+
+
+comment C89D
+comment C89D ------------------------------------------------------------------------------
+comment C89D Jump entry 34 ??????
+comment C89D ------------------------------------------------------------------------------
+
+
+comment C8AA
+comment C8AA ------------------------------------------------------------------------------
+comment C8AA Jump entry 35 ??????
+comment C8AA ------------------------------------------------------------------------------
+
+
+comment C8B7
+comment C8B7 ------------------------------------------------------------------------------
+comment C8B7 Jump entry 36 ??????
+comment C8B7 ------------------------------------------------------------------------------
+
+
+comment C8C4
+comment C8C4 ------------------------------------------------------------------------------
+comment C8C4 ??????
+comment C8C4 ------------------------------------------------------------------------------
+label C8C4 ClearTeamRoster
+
+
+comment C8D1
+comment C8D1 ------------------------------------------------------------------------------
+comment C8D1 ??????
+comment C8D1 ------------------------------------------------------------------------------
+
+
+comment C8FC
+comment C8FC ------------------------------------------------------------------------------
+comment C8FC ??????
+comment C8FC ------------------------------------------------------------------------------
+label C8FC DrawBackground
+
+comment C915
+comment C915 ------------------------------------------------------------------------------
+comment C915 Initialize ?????? (graphics engine or game state maybe)
+comment C915 ------------------------------------------------------------------------------
+label C915 InitializeSomething		FIXME: Make something more meaningful :)
+
+
+comment C94D
+comment C94D ------------------------------------------------------------------------------
+comment C94D Initialize ?????? table, generate sprites from templates, and draw the
+comment C94D baseball field
+comment C94D ------------------------------------------------------------------------------
+comment C94D Build ?????? table
+label C94D InitLoadGraphics
+lcomment C94D Get address of ?????? buffer
+lcomment C950 Set initial ?????? value
+lcomment C951 - Save on stack
+lcomment C953 Get ?????? value from stack
+lcomment C955 Get ?????? value from stack
+lcomment C957 Keep only ???BLUE??? pixels
+lcomment C959 Shift to make ???YELLOW??? pixels
+lcomment C95A Save ?????? to ?????? buffer
+lcomment C95C Get ?????? value from stack (again)
+lcomment C95E Keep only ???YELLOW??? pixels
+lcomment C960 Shift to make ???YELLOW??? pixels
+lcomment C961 Mix with ?????? value in ?????? buffer
+lcomment C963 Mix with ?????? value on stack
+lcomment C965 Invert
+lcomment C966 Save ?????? value in ?????? buffer
+lcomment C968 Go to the next ?????? value
+lcomment C96A Not done keep going (wrap around to 0 stops loop)
+lcomment C96C Clean up stack
+comment C96E Build player sprites from template
+lcomment C96E Get the address of the ??????
+lcomment C971 Get the address of the player sprite template
+lcomment C975 Get the number of sprites to process
+lcomment C977 - Stash it
+lcomment C979 Get the number of rows to process per sprite
+lcomment C97B - Stash it
+lcomment C97D Get sprite data
+lcomment C97F ??????
+lcomment C982 Save to sprite buffer
+lcomment C984 Dec row counter
+lcomment C986 Not done yet
+lcomment C988 Dec sprite counter
+lcomment C98A Not done yet
+comment C98C ??????
+lcomment C98C Get address of ?????? buffer
+lcomment C98F Get address of player ?????? sprite buffer
+lcomment C992 Get address of player ?????? sprite buffer
+lcomment C996 Get the number of sprites to process
+lcomment C998 - Stash it
+lcomment C99A Get the number of rows to process per sprite
+lcomment C99C - Stash it
+lcomment C99E Get a row of sprite pixels
+lcomment C9A0 
+lcomment C9A1 
+lcomment C9A2 Save them to player ?????? sprite buffer
+lcomment C9A4 Add (mix) them with the original pixel values for the sprite row
+lcomment C9A6 Save them to player ?????? sprite buffer
+lcomment C9A8 Decrement sprite row counter
+lcomment C9AA Not done yet, keep processing
+lcomment C9AC Decrement sprite counter
+lcomment C9AE Not done yet, keep processing
+comment C9B0 Clear ???backbuffer??? screen to GREEN.
+lcomment C9B0 
+lcomment C9B3 
+lcomment C9B5 
+lcomment C9B8 
+comment C9BA Draw the baseball field (from RLE like stream)
+lcomment C9BA Get the number of RLE data chunks to process
+lcomment C9BC - Save it
+lcomment C9BE Get the byte value to add to the draw areas
+lcomment C9C0 - Save it
+lcomment C9C2 ?????? Point to RLE encoded background image ??????
+lcomment C9C6 ?????? Point to center of top row of backbuffer screen ??????
+lcomment C9CA Get the bottom line number (number of lines - 1 = 191)
+lcomment C9CC Check the line number specified in the RLE data
+lcomment C9CE It's zero (null terminator) so we're done
+lcomment C9D0 Subtract it from the bottom line
+lcomment C9D2 Save it
+lcomment C9D4 Get the number of bytes per row
+lcomment C9D6 Multiply like bunnies
+lcomment C9D7 Get the address to ?????? at
+lcomment C9D9 Get the number of rows to draw
+lcomment C9DB Get byte from the backbuffer
+lcomment C9DD Add the ?????? value because ??????
+lcomment C9DF Save new valie to the backbuffer
+lcomment C9E1 Go UP a row
+lcomment C9E4 Decrement the row counter
+lcomment C9E5 Not done, go process another row
+lcomment C9E7 Get the bottom row
+lcomment C9E9 Subtact the next RLE byte vlaue to get the next row to draw at
+lcomment C9EB Keep drawing!
+lcomment C9ED Get the ?????? value
+lcomment C9EF ??????
+lcomment C9F0 ??????
+lcomment C9F1 ??????
+lcomment C9F3 Reset the ?????? to a default of 1
+lcomment C9F5 DEAD CODE ?????? This doesn't seem to do anything
+lcomment C9F7 Save the new ?????? value
+lcomment C9F9 Decrement the number of RLE data chunks to process
+lcomment C9FB Not zero, keep processing
+comment C9FD Draw stadium wall and stands in upper left hand corner of backbuffer
+lcomment C9FD Get number of rows to draw
+lcomment C9FF Save it in counter var
+lcomment CA01 Get address of stadium graphics
+lcomment CA05 Get address of the top of the backbuffer
+lcomment CA08 Get number of words to draw per row
+lcomment CA0A Save it in counter var
+lcomment CA0C Load a byte from the image buffer
+lcomment CA0E Save it to the backbuffer
+lcomment CA10 Decrement counter of number of words to copy
+lcomment CA12 Not 0 so not done yet, keep copying.
+lcomment CA14 Go to the start of the next row (compensate for offset during drawing)
+lcomment CA17 Decrement counter of number of rows to draw
+lcomment CA19 Not 0 so not done yet. Keep copying.
+comment CA1B Draw blue frame on top and bottom of screen (two pixels high)
+lcomment CA1B Get address of the top of the backbuffer
+lcomment CA1E Get value for full byte of blue pixels
+lcomment CA20 Get number of 8 pixel columns to draw (half of screen remember)
+lcomment CA22 Draw the second row of pixels for the bottom frame
+lcomment CA26 Draw the first row of pixels for the bottom frame
+lcomment CA2A Draw the second row of pixels for the top frame
+lcomment CA2D Draw the first row of pixels for the top frame
+lcomment CA2F Decrement the row counter
+lcomment CA30 Not 0 so not done. Keep drawing frame
+comment CA32 Draw blue frame on left side of screen
+lcomment CA32 Get address of the top of the backbuffer
+lcomment CA35 Get number of rows to draw
+lcomment CA37 Load a byte from the backbuffer
+lcomment CA39 Mask off pixels where the frame will be drawn
+lcomment CA3B Mix in the blue pixel for the frame
+lcomment CA3D Save if back to the backbuffer
+lcomment CA3F Go to the next row
+lcomment CA42 Decrement the row counter
+lcomment CA43 Not 0 so not done. Keep drawing frame
+comment CA45 Copy and mirror the left side of the screen to the right side of the screen
+lcomment CA45 Get the number of rows to copy and mirror
+lcomment CA47 Save it
+lcomment CA49 Get source address of the top and center of the backbuffer
+lcomment CA4C Get destination address of the top and center of the backbuffer
+lcomment CA4E Get the number of bytes to copy and mirror
+lcomment CA50 Save it
+lcomment CA52 Get the last byte of the half row
+lcomment CA54 Mirror it (2 bits per pixel)
+lcomment CA55 -
+lcomment CA56 -
+lcomment CA57 -
+lcomment CA58 -
+lcomment CA59 -
+lcomment CA5A -
+lcomment CA5B -
+lcomment CA5C -
+lcomment CA5D -
+lcomment CA5E -
+lcomment CA5F -
+lcomment CA60 -
+lcomment CA61 -
+lcomment CA62 -
+lcomment CA63 -
+lcomment CA64 -
+lcomment CA65 -
+lcomment CA66 -
+lcomment CA67 -
+lcomment CA68 -
+lcomment CA69 -
+lcomment CA6A -
+lcomment CA6B Write the mirrored byte as the next column in the other half of the row
+lcomment CA6D Decrement the column counter
+lcomment CA6F Not 0 so keep copying the row
+lcomment CA71 Done. Advance the source address to the middle of the next row
+lcomment CA74 Advance the destination address to the middle of the next row
+lcomment CA77 Decrement the row counter
+lcomment CA79 Not 0 so we are not done. Keep copying rows.
+lcomment CA7B DONE!
+
+
+comment CA7C
+comment CA7C ------------------------------------------------------------------------------
+comment CA7C Team Editor
+comment CA7C ------------------------------------------------------------------------------
+label CA7C EditTeamsScene_Run
+lcomment CA7C Clear screen
+lcomment CA7F -
+lcomment CA81 -
+lcomment CA84 -
+lcomment CA86 Get the number of team member input boxes to draw
+lcomment CA8A Get address of top of screen + 8 rows down (GfxScreen1TopAddr+$100)
+lcomment CA8D Get byte value for 4 yellow pixels
+lcomment CA8F Get count for number of rows for input box (32*7)
+lcomment CA91 Draw input box (name/avg)
+lcomment CA93 Decrement byte draw counter
+lcomment CA94 Not done, keep drawing
+lcomment CA96 Move down 3 rows (32*3)
+lcomment CA99 Are we at the midpoint for drawing teams?
+lcomment CA9D Nope, keep drawing for current team
+lcomment CA9F Yes, skip down 5 lines (32*5) for separator between teams
+lcomment CAA3 Are we done drawing input boxes for all team members?
+lcomment CAA5 Nope, keep drawing
+lcomment CAA7 Get screen position to draw separator between name and average
+lcomment CAAA Get number of rows to draw
+lcomment CAAC Erase / draw separator
+lcomment CAAE Erase / draw separator (again)
+lcomment CAB0 Go to next row (minus 1 byte)
+lcomment CAB3 Are we done drawing the separator?
+lcomment CAB4 No, keep drawing
+lcomment CAB6 Get column and row position (upper right hand corner)
+lcomment CAB9 Get address of NAME text
+lcomment CABD Draw the text
+lcomment CAC0 Get column and row position (top center)
+lcomment CAC3 Get address of VISITORS text
+lcomment CAC7 Draw the text
+lcomment CACA Get column and row position (upper right hand corner)
+lcomment CACD Get address of AVRG text
+lcomment CAD1 Draw the text
+lcomment CAD4 Get column and row position (dead center)
+lcomment CAD7 Get address of HOME text
+lcomment CADB Draw the text
+lcomment CADE Get address of graphics screen
+lcomment CAE1 Get address of backbuffer
+lcomment CAE4 Copy the updated screen to the backbuffer (WTF not draw there in the first place?)
+lcomment CAE7 Get address of team roster buffer
+lcomment CAEA Save the current input pointer
+lcomment CAEC Get the blank character
+lcomment CAEE Save in current input position
+lcomment CAF2   
+lcomment CAF4 
+lcomment CAF8   
+lcomment CAFA 
+lcomment CAFD Grab a character from the keyboard
+lcomment CB01 Zero = no input, keep trying
+lcomment CB03 Was the ENTER key pressed?
+lcomment CB05 No, keep checking
+lcomment CB07 Get start of input position so we can find the ??????end of ?????? current input row we are on
+lcomment CB0A Skip to next row
+lcomment CB0D Check against current input position
+lcomment CB10 We've found it (name), go set the new position and check bounds
+lcomment CB12 ?????? Skip separator between name and avrg
+lcomment CB15 Check against current input position
+lcomment CB18 We've found it (avrg), go set the new position and check bounds
+lcomment CB1A Keep iterating rows
+lcomment CB1C Was the LEFT ARROW (backspace) pressed?
+lcomment CB1E Nope, keep checking
+lcomment CB20 Get the current input position
+lcomment CB22 Go back one
+lcomment CB25 Go set the new position and check bounds
+lcomment CB27 Save the character to the input buffer (accepts anything?!? LOL)
+lcomment CB2B Go check to reset game if BREAK is pressed
+lcomment CB2E 
+lcomment CB30 Get the character at the current input position
+lcomment CB34 Draw the character
+lcomment CB37 Get the current input position
+lcomment CB39 Go to the next column
+lcomment CB3C Save it
+lcomment CB3E Check to see if we've gone too far backwards
+lcomment CB42 Yep, sure have, go reset to start of input  
+lcomment CB44 Are we at the end of the input?
+lcomment CB48 Nope, keep taking input  
+lcomment CB4A Yes, finally.  
+
+
+comment CB4B
+comment CB4B ------------------------------------------------------------------------------
+comment CB4B ??????
+comment CB4B ------------------------------------------------------------------------------
+
+
+comment CB7D
+comment CB7D ------------------------------------------------------------------------------
+comment CB7D ??????
+comment CB7D ------------------------------------------------------------------------------
+data CB7D-CB93
+
+
+comment CB95
+comment CB95 ------------------------------------------------------------------------------
+comment CB95 ??????
+comment CB95 ------------------------------------------------------------------------------
+
+
+comment CC16
+comment CC16 ------------------------------------------------------------------------------
+comment CC16 Called when the batter gets a foul ??????
+comment CC16 ------------------------------------------------------------------------------
+label CC16 Game_OnFoulOrStrike
+lcomment CC32 Get strike-out state (i.e. leave field state)
+lcomment CC34 Get address of state for batter actor  ???????
+
+
+comment CC48
+comment CC48 ------------------------------------------------------------------------------
+comment CC48 Called when the batter gets a ball
+comment CC48 ------------------------------------------------------------------------------
+label CC48 Game_OnBall
+
+
+comment CC76
+comment CC76 ------------------------------------------------------------------------------
+comment CC76 ??????
+comment CC76 ------------------------------------------------------------------------------
+
+
+comment CD54
+comment CD54 ------------------------------------------------------------------------------
+comment CD54 ??????
+comment CD54 ------------------------------------------------------------------------------
+
+
+comment CD75
+comment CD75 ------------------------------------------------------------------------------
+comment CD75 ??????
+comment CD75 ------------------------------------------------------------------------------
+
+
+comment CDD0
+comment CDD0 ------------------------------------------------------------------------------
+comment CDD0 ??????
+comment CDD0 ------------------------------------------------------------------------------
+
+
+comment CDF4
+comment CDF4 ------------------------------------------------------------------------------
+comment CDF4 ??????
+comment CDF4 ------------------------------------------------------------------------------
+
+
+comment CE49
+comment CE49 ------------------------------------------------------------------------------
+comment CE49 ??????
+comment CE49 ------------------------------------------------------------------------------
+
+
+comment CE98
+comment CE98 ------------------------------------------------------------------------------
+comment CE98 ??????
+comment CE98 ------------------------------------------------------------------------------
+
+
+comment CF0A
+comment CF0A ------------------------------------------------------------------------------
+comment CF0A ??????
+comment CF0A ------------------------------------------------------------------------------
+
+
+comment CF6C
+comment CF6C ------------------------------------------------------------------------------
+comment CF6C ??????
+comment CF6C ------------------------------------------------------------------------------
+
+
+comment CFA0
+comment CFA0 ------------------------------------------------------------------------------
+comment CFA0 ??????
+comment CFA0 ------------------------------------------------------------------------------
+
+
+comment CFEA
+comment CFEA ------------------------------------------------------------------------------
+comment CFEA ??????
+comment CFEA ------------------------------------------------------------------------------
+
+
+comment D003
+comment D003 ------------------------------------------------------------------------------
+comment D003 ??????
+comment D003 ------------------------------------------------------------------------------
+
+
+comment D091
+comment D091 ------------------------------------------------------------------------------
+comment D091 ??????
+comment D091 ------------------------------------------------------------------------------
+
+
+comment D0BD
+comment D0BD ------------------------------------------------------------------------------
+comment D0BD ??????
+comment D0BD ------------------------------------------------------------------------------
+
+
+comment D0EA
+comment D0EA ------------------------------------------------------------------------------
+comment D0EA ??????
+comment D0EA ------------------------------------------------------------------------------
+
+
+comment D108
+comment D108 ------------------------------------------------------------------------------
+comment D108 ??????
+comment D108 ------------------------------------------------------------------------------
+label D108 DrawNextHomeRunBannerPixels
+
+
+comment D148
+comment D148 ------------------------------------------------------------------------------
+comment D148 ??????
+comment D148 ------------------------------------------------------------------------------
+
+
+comment D17B
+comment D17B ------------------------------------------------------------------------------
+comment D17B ??????
+comment D17B ------------------------------------------------------------------------------
+
+
+comment D187
+comment D187 ------------------------------------------------------------------------------
+comment D187 ??????
+comment D187 ------------------------------------------------------------------------------
+
+
+comment D193
+comment D193 ------------------------------------------------------------------------------
+comment D193 Draw scoreboard ??????
+comment D193 ------------------------------------------------------------------------------
+label D193 DrawScoreboard
+
+
+comment D199
+comment D199 ------------------------------------------------------------------------------
+comment D199 ??????
+comment D199 ------------------------------------------------------------------------------
+label D199 DrawBlankScoreboard
+lcomment D199 Stash registers
+lcomment D19B Get address on screen to draw
+lcomment D19E Get 8 blue pixels worth of data to draw
+lcomment D1A1 Get number of rows to draw (31)
+lcomment D1A3 Get number of words to write per row
+lcomment D1A5 Write 8 pixels to screen
+lcomment D1A7 Decrement number of words to write
+lcomment D1A8 Not done yet, keep drawing
+lcomment D1AA Go to address of the start of the next row
+lcomment D1AC Decrement the number of rows to count
+lcomment D1AD Not done yet, keep drawing
+lcomment D1AF DONE! Restore registers
+
+
+comment D1B1
+comment D1B1 ------------------------------------------------------------------------------
+comment D1B1 Draw the inning numbers, visitors, home, ball, strike, and out text.
+comment D1B1 ------------------------------------------------------------------------------
+label D1B1 DrawScoreboardBaseText
+lcomment D1B1 Get address on screen to draw on scoreboard
+lcomment D1B4 Clear the inning counter
+lcomment D1B6 Go to next inning
+lcomment D1B8 Get inning value
+lcomment D1BA Beyond inning 9?
+lcomment D1BC Yes, go draw rest of text
+lcomment D1BE Go draw the inning digit (top of scoreboard)
+lcomment D1C1 Keep drawing
+lcomment D1C3 Get address of image based text blocks to draw
+lcomment D1C7 Draw first block (Visitors)
+lcomment D1CA Draw first block (Home)
+lcomment D1CD Draw first block (Ball)
+lcomment D1D0 Draw first block (Srtike)
+lcomment D1D3 Draw first block (Out)
+
+
+comment D1D6
+comment D1D6 ------------------------------------------------------------------------------
+comment D1D6 Update and draw scores and stats ??????
+comment D1D6 ------------------------------------------------------------------------------
+label D1D6 DrawScoreAndStats
+
+
+comment D244
+comment D244 ------------------------------------------------------------------------------
+comment D244 ??????
+comment D244 ------------------------------------------------------------------------------
+label D244 DrawInningScore
+
+
+comment D251
+comment D251 ------------------------------------------------------------------------------
+comment D251 ??????
+comment D251 ------------------------------------------------------------------------------
+label D251 DrawTensPlaceDigit
+label D259 DrawOnesPlaceDigit
+label D25B DrawDigit
+
+
+comment D2CD
+comment D2CD ------------------------------------------------------------------------------
+comment D2CD ??????
+comment D2CD ------------------------------------------------------------------------------
+data D2CD-D301
+
+label D2CD Asset_ScoreDigit0
+label D2D2 Asset_ScoreDigit1
+label D2D7 Asset_ScoreDigit2
+label D2DC Asset_ScoreDigit3
+label D2E1 Asset_ScoreDigit4
+label D2E6 Asset_ScoreDigit5
+label D2EB Asset_ScoreDigit6
+label D2F0 Asset_ScoreDigit7
+label D2F5 Asset_ScoreDigit8
+label D2FA Asset_ScoreDigit9
+label D2FF Asset_ScoreDigitX
+
+comment D304
+comment D304 ------------------------------------------------------------------------------
+comment D304 ??????
+comment D304 ------------------------------------------------------------------------------
+
+
+comment D42A
+comment D42A ------------------------------------------------------------------------------
+comment D42A ??????
+comment D42A ------------------------------------------------------------------------------
+
+
+comment D5A3
+comment D5A3 ------------------------------------------------------------------------------
+comment D5A3 ??????
+comment D5A3 ------------------------------------------------------------------------------
+label D5A3 Draw5HighBlockIndirect
+
+
+comment D5CD
+comment D5CD ------------------------------------------------------------------------------
+comment D5CD ??????
+comment D5CD ------------------------------------------------------------------------------
+
+
+comment D5ED
+comment D5ED ------------------------------------------------------------------------------
+comment D5ED Translate coordinates to screen address and frame offset ??????
+comment D5ED ------------------------------------------------------------------------------
+label D5ED TranslateCoordToAddress
+label D5F3 TranslateCoordToAddressEx
+
+comment D60B
+comment D60B ------------------------------------------------------------------------------
+comment D60B ??????
+comment D60B ------------------------------------------------------------------------------
+
+
+comment D61E
+comment D61E ------------------------------------------------------------------------------
+comment D61E ??????
+comment D61E ------------------------------------------------------------------------------
+
+
+comment D62C
+comment D62C ------------------------------------------------------------------------------
+comment D62C ??????
+comment D62C ------------------------------------------------------------------------------
+
+
+comment D665
+comment D665 ------------------------------------------------------------------------------
+comment D665 Text printing ??????
+comment D665 ------------------------------------------------------------------------------
+label D665 PrintText
+
+
+comment D670
+comment D670 ------------------------------------------------------------------------------
+comment D670 Text printing ??????
+comment D670 ------------------------------------------------------------------------------
+label D670 PrintFixedTextLine
+label D679 PrintTextEx
+
+comment D68D
+comment D68D ------------------------------------------------------------------------------
+comment D68D Text printing ??????
+comment D68D ------------------------------------------------------------------------------
+label D68D DrawGlyph
+
+comment D6D8
+comment D6D8 ------------------------------------------------------------------------------
+comment D6D8 Check to see if BREAK key is down and if it is reset the game (warm restart)
+comment D6D8 ------------------------------------------------------------------------------
+label D6D8 CheckToResetGame
+
+
+comment D6E7
+comment D6E7 ------------------------------------------------------------------------------
+comment D6E7 Applause
+comment D6E7 ------------------------------------------------------------------------------
+label D6E7 Effect_ApplauseUpdate
+
+
+comment D700
+comment D700 ------------------------------------------------------------------------------
+comment D700 Play 4 voice music track
+comment D700 ------------------------------------------------------------------------------
+label D700 PlaySong
+lcomment D700
+lcomment D701
+lcomment D702 Set level of channel 1 to 0
+lcomment D704 Set level of channel 2 to 0
+lcomment D706 Set level of channel 3 to 0
+lcomment D708 Set level of channel 4 to 0
+lcomment D70A Get note duration
+lcomment D70C If the duration is 0 the song is complete.
+lcomment D70E Save the note duration
+lcomment D710 Get address of frequency table
+lcomment D714 Get the frequency index for channel 1
+lcomment D716 Get the frequency value for channel 1
+lcomment D718 Save the frequency value for channel 1
+lcomment D71A Get the frequency index for channel 2
+lcomment D71C Get the frequency value for channel 2
+lcomment D71E Save the frequency value for channel 2
+lcomment D720 Get the frequency index for channel 3
+lcomment D722 Get the frequency value for channel 3
+lcomment D724 Save the frequency value for channel 3
+lcomment D726 Get the frequency index for channel 4
+lcomment D728 Get the frequency value for channel 4
+lcomment D72A Save the frequency value for channel 4
+lcomment D72C Get the number of times to play this tick
+lcomment D730 Start with a sample value of 0
+lcomment D733 Get the level of channel 1
+lcomment D735 If positive no modification needed.
+lcomment D737 Make positive
+lcomment D738 Add to sample value (mix)
+lcomment D739 Get the level of channel 2
+lcomment D73B If positive no modification needed.
+lcomment D73D Make positive
+lcomment D73E Add to sample value (mix)
+lcomment D73F Get the level of channel 3
+lcomment D741 If positive no modification needed.
+lcomment D743 Make positive
+lcomment D744 Add to sample value (mix)
+lcomment D745 Get the level of channel 4
+lcomment D747 If positive no modification needed.
+lcomment D749 Make positive
+lcomment D74A Add to sample value (mix)
+lcomment D74B Move sample value into ACCD
+lcomment D74D Divide sample value by 2
+lcomment D74E -
+lcomment D74F Set to DAC
+lcomment D752 Get the level for channel 1
+lcomment D754 Add the frequency value for channel 1
+lcomment D756 Save the new level for channel 1
+lcomment D758 Get the level for channel 2
+lcomment D75A Add the frequency value for channel 2
+lcomment D75C Save the new level for channel 2
+lcomment D75E Get the level for channel 3
+lcomment D760 Add the frequency value for channel 3
+lcomment D762 Save the new level for channel 3
+lcomment D764 Get the level for channel 4
+lcomment D766 Add the frequency value for channel 4
+lcomment D768 Save the new level for channel 4
+lcomment D76A Are we done processing this tick
+lcomment D76C No, keep playing note(s)
+lcomment D76E Have we completely played this note?
+lcomment D770 No, keep playing it
+lcomment D772 Go play the next note
+lcomment D774 DONE!
+
+
+comment D775
+comment D775 ------------------------------------------------------------------------------
+comment D775 ??????
+comment D775 ------------------------------------------------------------------------------
+label D775 GfxCopyScreen
+
+
+comment D782
+comment D782 ------------------------------------------------------------------------------
+comment D782 ??????
+comment D782 ------------------------------------------------------------------------------
+label D782 GfxSetGraphicsMode
+
+
+comment D7A2
+comment D7A2 ------------------------------------------------------------------------------
+comment D7A2 Wait for vsync
+comment D7A2 ------------------------------------------------------------------------------
+label D7A2 WaitForVSync
+
+
+
+
+
+*******************************************************************************
+*
+*	Game Assets and Data Tables
+*
+*******************************************************************************
+
+
+comment D7B7
+comment D7B7 ------------------------------------------------------------------------------
+comment D7B7 Graphics for upper left stadium wall and stands
+comment D7B7 ------------------------------------------------------------------------------
+data D7B7-DFFF
+label D7B7 Asset_StadiumWall
+
+
+comment D8BF
+comment D8BF ------------------------------------------------------------------------------
+comment D8BF Compressed baseball field image data ??????
+comment D8BF ------------------------------------------------------------------------------
+label D8BF Asset_BaseballFieldRLE
+
+comment DAA1
+comment DAA1 ------------------------------------------------------------------------------
+comment DAA1 Player sprites (8x11? pixels each)
+comment DAA1 ------------------------------------------------------------------------------
+label DAA1 Asset_PlayerSprites
+
+
+comment DC2B
+comment DC2B ------------------------------------------------------------------------------
+comment DC2B 5 static text strings shown on scoreboard - visitors, home, strike, ball, out
+comment DC2B Each text block is five pixels high. The first two bytes at the screen
+comment DC2B address and the third byte is the number of bytes to draw per row/line. This
+comment DC2B is followed by (5 * column) bytes of image data.
+comment DC2B ------------------------------------------------------------------------------
+label DC2B Asset_ScoreboardTextBundle
+
+
+comment DC80
+comment DC80 ------------------------------------------------------------------------------
+comment DC80 Cursive homerun banner
+comment DC80 ------------------------------------------------------------------------------
+label DC80 Asset_HomeRunBanner
+label DD02 Asset_HomeRunBannerMasks
+
+
+comment DD12
+comment DD12 ------------------------------------------------------------------------------
+comment DD12 Overlay text
+comment DD12 ------------------------------------------------------------------------------
+label DD12 Asset_Message_Strike
+label DD42 Asset_Message_Ball
+label DD72 Asset_Message_Out
+label DDA2 Asset_Message_Foul
+label DDD2 Asset_Message_Balk
+
+
+comment DE02
+comment DE02 ------------------------------------------------------------------------------
+comment DE02 Frequency table for music player
+comment DE02 ------------------------------------------------------------------------------
+label DE02 NoteFrequencyTable
+
+comment DE34
+comment DE34 ------------------------------------------------------------------------------
+comment DE34 Note information for national anthem (4 channels. null terminated)
+comment DE34 ------------------------------------------------------------------------------
+label DE34 Asset_USANationalAnthem
+
+
+comment DEB8
+comment DEB8 ------------------------------------------------------------------------------
+comment DEB8 Font. 8x5 picel glyphs.
+comment DEB8 ------------------------------------------------------------------------------
+label DEB8 Asset_Font
+
+
+comment DF71
+comment DF71 ------------------------------------------------------------------------------
+comment DF71 Text strings
+comment DF71 ------------------------------------------------------------------------------
+label DF71 Text_OneTwo_Length
+label DF72 Text_OneTwo
+label DF79 Text_Players_Length
+label DF7A Text_Players
+label DF81 Text_Name_Length
+label DF82 Text_Name
+label DF86 Text_Avrg_Length
+label DF87 Text_Avrg
+label DF8B Text_Home_Length
+label DF8C Text_Home
+label DF90 Text_Visitors_Length
+label DF91 Text_Visitors
+label DF99 Text_ColorBaseball_Length
+label DF9A Text_ColorBaseball
+label DFB1 Text_CopyrightDaleLear_Length
+label DFB2 Text_CopyrightDaleLear
+label DFCA Text_LicensedToTandy_Length
+label DFCB Text_LicensedToTandy
+label DFE3 Text_AllRightsReserved_Length
+label DFE4 Text_AllRightsReserved
+
+
+*comment XXXX
+*comment XXXX ------------------------------------------------------------------------------
+*comment XXXX ??????
+*comment XXXX ------------------------------------------------------------------------------
+*label XXXX $+XXXX
